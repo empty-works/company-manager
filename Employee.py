@@ -1,7 +1,8 @@
 '''
 Abstract employee class
 '''
+from abc import ABCMeta
 
-class Employee:
-
-    def __init__(self):
+class Employee(metaclass=ABCMeta):
+    pass
+    
