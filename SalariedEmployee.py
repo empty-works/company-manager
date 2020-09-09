@@ -1,2 +1,4 @@
-class SalariedEmployee:
+from Employee import Employee
+
+class SalariedEmployee(Employee):
     pass
