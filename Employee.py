@@ -4,7 +4,10 @@ Abstract employee class
 from abc import ABCMeta
 
 class Employee(metaclass=ABCMeta):
-    pass
+    
+    def __init__(self, name = 'N/A', salary = 100000.00):
+        self.name = name
+        self.salary = salary
 
 class HourlyEmployee(Employee):
     pass
