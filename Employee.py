@@ -8,6 +8,7 @@ class Employee(metaclass=ABCMeta):
     def __init__(self, name = 'N/A'):
         self.name = name
         self.rate = 0.00
+        self.hours_per_day = 0
 
     def hire(self):
         pass
@@ -15,5 +16,5 @@ class Employee(metaclass=ABCMeta):
     def fire(self):
         pass
 
-    def raise(self):
+    def raise_pay(self):
         pass
