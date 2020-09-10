@@ -5,18 +5,15 @@ from abc import ABCMeta
 
 class Employee(metaclass=ABCMeta):
     
-    def __init__(self, name = 'N/A', salary = 100000.00):
+    def __init__(self, name = 'N/A'):
         self.name = name
-        self.salary = salary
+        self.rate = 0.00
 
-class HourlyEmployee(Employee):
-    pass
+    def hire(self):
+        pass
+    
+    def fire(self):
+        pass
 
-class SalariedEmployee(Employee):
-    pass
-
-class Manager(Employee):
-    pass
-
-class Executive(Employee):
-    pass
+    def raise(self):
+        pass
