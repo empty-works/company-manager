@@ -1,4 +1,5 @@
 from Employee import Employee
 
 class SalariedEmployee(Employee):
-    pass
+    Employee.rate = 40.00
+    Employee.hours_per_day = 8

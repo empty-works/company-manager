@@ -1,4 +1,5 @@
 from Employee import Employee
 
 class Manager(Employee):
-    pass
+    Employee.rate = 50.00
+    Employee.hours_per_day = 9
