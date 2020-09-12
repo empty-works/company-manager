@@ -23,11 +23,5 @@ class Employee(metaclass=ABCMeta):
     def get_hours(self):
         return self.hours_per_day
 
-    def hire(self):
-        pass
-    
-    def fire(self):
-        pass
-
     def raise_pay(self):
         pass
