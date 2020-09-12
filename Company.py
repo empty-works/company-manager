@@ -11,8 +11,14 @@ class Company:
     def __init__(self):
         pass
 
-    def hire(Employee emp):
+    def hire(self, Employee emp):
         pass
 
-    def fire(Employee emp):
+    def fire(self, Employee emp):
+        pass
+
+    def get_num_employees(self):
+        return self.num_employees
+
+    def show_employees(self):
         pass
