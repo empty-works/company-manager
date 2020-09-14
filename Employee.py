@@ -23,5 +23,11 @@ class Employee(metaclass=ABCMeta):
     def get_hours(self):
         return self.hours_per_day
 
-    def raise_pay(self):
-        pass
+    def change_name(self, name):
+        self.name = name
+
+    def change_rate(self, amount):
+        self.rate = amount
+    
+    def change_hours(self, hours):
+        self.hours_per_day = hours
