@@ -6,16 +6,17 @@ from Employee import Employee
 
 class Company:
 
+    self.employee_roster = []
     self.num_employees = 0
 
     def __init__(self):
         pass
 
     def hire(self, Employee emp):
-        pass
+        employee_roster.append(emp)
 
     def fire(self, Employee emp):
-        pass
+        employee_roster.remove(emp)
 
     def get_num_employees(self):
         return self.num_employees
