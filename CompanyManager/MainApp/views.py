@@ -2,10 +2,8 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Employee
 
-# Create your views here.
-
 def index(request):
-    employees = Employee.objects.all();
+    employees = Employee.objects.all()
     return render(request, 'main_app/index.html', {'employees': employees})
 
 def help(request):
