@@ -8,6 +8,19 @@
 	</head>
 
 	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="{% url 'home:index' %}">Company</a>
+  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    			<span class="navbar-toggler-icon"></span>
+  		</button>
+		  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+		    <div class="navbar-nav">
+		      <a class="nav-link" href="{% url 'about' %}">About</a>
+		      <a class="nav-link" href="{% url 'blog:all_blogs' %}">Blog</a>
+		    </div>
+		  </div>
+		</nav><br>
+
 		<div class="container text-center">
 			<h1><b>The Blog</b></h1>
 			<h2>M has written </h2>

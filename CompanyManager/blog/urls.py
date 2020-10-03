@@ -1,7 +1,7 @@
 from django.urls import path
 from . import views
 
-app_name = 'blog' #Best practice to call any view more precisely. to call any view more precisely.
+app_name = 'blog' #Best practice to call any view more precisely. 
 
 urlpatterns = [
     path('', views.all_blogs, name = 'all_blogs'),
