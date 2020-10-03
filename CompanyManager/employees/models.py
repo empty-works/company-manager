@@ -6,4 +6,4 @@ class Employee(models.Model):
     birthdate = models.DateField(blank = True)
     address = models.CharField(max_length = 2000)
     email = models.EmailField(blank = True)
-    picture = models.ImageField(upload_to = 'MainApp/images/', default = None)
+    picture = models.ImageField(upload_to = 'employees/images/', default = None)
