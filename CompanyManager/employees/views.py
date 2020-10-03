@@ -4,7 +4,7 @@ from .models import Employee
 
 def index(request):
     emps = Employee.objects.all()
-    return render(request, 'main_app/index.html', {'emps': emps})
+    return render(request, 'employees/index.html', {'emps': emps})
 
 def about(request):
-    return render(request, 'main_app/about.html')
+    return render(request, 'employees/about.html')
