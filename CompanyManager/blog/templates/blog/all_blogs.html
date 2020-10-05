@@ -23,7 +23,7 @@
 
 		<div class="container text-center">
 			<h1><b>The Blog</b></h1>
-			<h2>{{ blog_count }} entries </h2>
+			<h2>{{ blog_count }} blog{{ blogs.count|pluralize }} </h2>
 		</div>
 		<div class="container">
 			{% for blog in blogs %}	
