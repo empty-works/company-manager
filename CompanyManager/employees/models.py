@@ -7,3 +7,6 @@ class Employee(models.Model):
     address = models.CharField(max_length = 2000)
     email = models.EmailField(blank = True)
     picture = models.ImageField(upload_to = 'employees/images/', default = None)
+
+    def __str__(self):
+        return self.lastName + ", " + self.firstName
