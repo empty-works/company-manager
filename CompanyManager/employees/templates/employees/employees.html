@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-{% load static %}
 {% extends 'home/base.html' %}
 
 
 <html>
 	<head>
+	{% block content %}
+	{% load static %}
 		<meta charset="utf-8">
-		<title>Welcome</title>
+		<title>Employees</title>
 		<link rel="stylesheet" href="{% static "css/default.css" %}"/>
 	</head>
 
 	<body>
-	{% block content %}
 		
 		<h1>Template activated!</h1>
 
@@ -33,8 +33,6 @@
 			</tbody>
 		</table>
 		
-	{% endblock %}
 	</body>
+	{% endblock %}
 </html>
-
-{% endblock %}
