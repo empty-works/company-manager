@@ -1,7 +1,9 @@
 <!DOCTYPE html>
+{% extends 'home/base.html' %}
 
 <html>
 	<head>
+	{% block content %}
 		<meta charset="utf-8">
 		<title>Detail</title>
 	</head>
@@ -10,4 +12,5 @@
 		<h1>{{ blog.title }}</h1>
 		<p>{{ blog.text }}</p>
 	</body>
+	{% endblock %}
 </html>
