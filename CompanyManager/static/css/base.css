@@ -2,9 +2,15 @@
 	background-color: #98c1d9;
 }
 
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: rgba(255,255,255,1);
+}
+
 /* change the link color */
 .navbar-custom .navbar-nav .nav-link {
-    color: rgba(255,255,255, 1);
+    color: rgba(255,255,255,1);
 }
 
 /* change the color of active or hovered links */
