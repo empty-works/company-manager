@@ -24,9 +24,9 @@ STATIC_DIR = BASE_DIR / 'static'
 SECRET_KEY = 'p1eg#99u*q!_t)^6-t!72wmxhrkm56alrs@o==gbduo!m21zp2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['fact2fiction.eu.pythonanywhere.com']
 
 
 # Application definition
