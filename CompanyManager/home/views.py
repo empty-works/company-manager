@@ -18,6 +18,3 @@ def home(request):
                 return render(request, 'home/home.html', {'form': UserCreationForm(), 'error':'Usernames must be unique.'})
         else:
             return render(request, 'home/home.html', {'form': UserCreationForm(), 'error':'Passwords did not match'})
-
-def landingpage(request):
-    return render(request, 'employees/employees.html', context)
