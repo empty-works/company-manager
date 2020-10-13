@@ -11,8 +11,11 @@
 
 	<body>
 		{% block content %}
-		<a href="{ url 'home/signupuser.html' }">Sign Up</a>
-		<a href="#">Log In</a>
+			{% if user.is_authenticated %}
+			<h1>Welcome, {{ user.username }}</h1> 	
+			{% else %}
+			<h1>Log in</h1>
+			{% endif %}
 		{% endblock %}
 	</body>
 </html>
