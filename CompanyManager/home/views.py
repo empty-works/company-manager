@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 
 def home(request):
     if request.method == "GET":
@@ -18,3 +18,8 @@ def home(request):
                 return render(request, 'home/home.html', {'form': UserCreationForm(), 'error':'Usernames must be unique.'})
         else:
             return render(request, 'home/home.html', {'form': UserCreationForm(), 'error':'Passwords did not match'})
+
+def logoutuser(request):
+    if request.method == 'POST':
+        logout(request)
+
