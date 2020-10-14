@@ -21,7 +21,9 @@ from django.conf import settings
 from home import views
 
 urlpatterns = [
-    path('', views.home, name = 'home'),
+    #path('', views.home, name = 'home'),
+    path('', include('home.urls')),
+    #path('logout/', views.logoutuser, name = 'logoutuser'),
     path('employees/', include('employees.urls')),
     path('blog/', include('blog.urls')),
     path('about/', include('about.urls')),

@@ -32,11 +32,9 @@
 		  </div>
 		</nav><br>
 
-		<!--SHOWS IF USER IS LOGGED IN-->
 		<p>Logged in as {{ user.username }}</p>
-		<a href="#">Logout</a>
 
-		<form action="{% url 'home:logoutuser' %}" method="POST">
+		<form action="{% url 'logoutuser' %}" method="POST">
 			{% csrf_token %}
 			<button type="submit">Logout</button>
 		</form>
