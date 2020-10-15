@@ -29,7 +29,9 @@ def loginuser(request):
         user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
         if user is None:
             return render(request, 'home/loginuser.html', {'form': AuthenticationForm(), 'error':'Username and/or password are not valid'})
-
+        else:
+            login(request, user)
+            return redirect('employees:employees')
      
 def logoutuser(request):
     if request.method == 'POST':
