@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth import login, logout
@@ -24,7 +24,7 @@ def signupuser(request):
 
 def loginuser(request):
     if request.method == "GET":
-        return render(request, 'home/loginuser.html', {'form': UserCreationForm()})
+        return render(request, 'home/loginuser.html', {'form': AuthenticationForm()})
     else:
         if request.POST['password1'] == request.POST['password2']:
             try:

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends 'home/base.html' %}
+
+<html>
+	{% load static %}
+	<head>
+		<meta charset="utf-8">
+		<title>Login</title>
+		<link rel="stylesheet" href="{% static "css/default.css" %}"/>
+	</head>
+
+	<body>
+		{% block content %}
+		<h1>Login User</h1> 
+		<h2>{{ error }}</h2>
+		<form method="POST">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<button type="submit">Login</button>
+		</form>
+		{% endblock %}
+	</body>
+</html>
