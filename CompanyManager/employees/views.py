@@ -8,6 +8,6 @@ def employees(request):
 
 def addEmployee(request):
     if request.method == 'GET':
-        return render(request, 'home/addemployee.html', {'form': EmployeeForm()})
+        return render(request, 'employees/addemployee.html', {'form': EmployeeForm()})
     else:
         pass
