@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Employee
+from .forms import EmployeeForm
 
 def employees(request):
     emps = Employee.objects.all()
@@ -7,6 +8,6 @@ def employees(request):
 
 def addEmployee(request):
     if request.method == 'GET':
-        return render(request, 'home/addemployee.html', {'form': AuthenticationForm()})
+        return render(request, 'home/addemployee.html', {'form': EmployeeForm()})
     else:
         pass
