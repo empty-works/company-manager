@@ -10,4 +10,12 @@ def addEmployee(request):
     if request.method == 'GET':
         return render(request, 'employees/addemployee.html', {'form': EmployeeForm()})
     else:
-        pass
+        # Essentially takes the form from GET and melds the fields into a POST thing. Awesome.
+        form = EmployeeForm(request.POST)
+        form.save() 
+        #newEmployee = form.save(commit = False)
+        # Does not allow current user to make changes for other users. However, this is not really 
+        # necessary for this app because all users are "super-users" anyway.
+        #newEmployee.user = request.user
+        #newEmployee.save()
+        return render(request, 'employees/employees.html')
