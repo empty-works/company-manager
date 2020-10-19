@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% extends 'home/base.html' %}
+
+<html>
+	<head>
+	{% block content %}
+		<meta charset="utf-8">
+		<title>Employee Details</title>
+	</head>
+
+	<body>
+		<h1>{{ emp.firstName }}</h1>
+		<p>{{ blog.lastName }}</p>
+	</body>
+	{% endblock %}
+</html>
