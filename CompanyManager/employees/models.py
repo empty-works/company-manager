@@ -3,11 +3,11 @@ from django.contrib.auth.models import User
 
 # Employee types list for the employeeType choice field.
 EMP_TYPES = {
-        ("1", "Potential"),
-        ("2", "Hourly"),
-        ("3", "Salaried"),
-        ("4", "Manager"),
-        ("5", "Executive"),
+        ("potential", "Potential"),
+        ("hourly", "Hourly"),
+        ("salaried", "Salaried"),
+        ("manager", "Manager"),
+        ("executive", "Executive"),
 }
 
 class Employee(models.Model):
@@ -21,7 +21,7 @@ class Employee(models.Model):
     employeeType = models.CharField(
             max_length = 20,
             choices = EMP_TYPES,
-            default = '1'
+            default = 'potential'
             )
     address = models.CharField(max_length = 2000)
     email = models.EmailField(blank = True)

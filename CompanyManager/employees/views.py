@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+
 from .models import Employee
 from .forms import EmployeeForm
 
@@ -17,3 +18,7 @@ def addEmployee(request):
             return render(request, 'employees/employees.html')
         except ValueError:
             return render(request, 'employees/addemployee.html', {'form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
+
+def viewEmployee(request, employees_pk):
+    emp = get_object_or_404(Employee, pk = employees_pk)
+    return render(request, 'employees/employeedetail.html', {'emp':emp})

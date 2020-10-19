@@ -26,9 +26,9 @@
 			<tbody>
 			{% for emp in emps  %}
 				<tr scope="row"></th>
-				{% if emp.employeeType == 1 %}<em>{% endif %}
-					<td>{{ emp.employeeType }}</td>
-				{% if emp.employeeType == 1 %}</em>{% endif %}
+				<td>{% if emp.employeeType == "executive" %}<b>{% endif %}
+					{{ emp.employeeType }}
+				{% if emp.employeeType == "executive" %}</b>{% endif %}</td>
 				<td>{{ emp.firstName }}</td>
 				<td>{{ emp.lastName }}</td>
 				<td>{{ emp.notes }}</td>
