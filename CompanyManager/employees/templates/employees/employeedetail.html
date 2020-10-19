@@ -10,6 +10,9 @@
 
 	<body>
 		<h1>{{ emp.firstName }} {{ emp.lastName }}</h1>
+		<form action = "POST">
+			{{ form.as_p }}
+		</form>
 	</body>
 	{% endblock %}
 </html>

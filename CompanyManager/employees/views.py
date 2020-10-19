@@ -20,4 +20,5 @@ def addEmployee(request):
 
 def viewEmployee(request, employees_pk):
     emp = get_object_or_404(Employee, pk = employees_pk)
-    return render(request, 'employees/employeedetail.html', {'emp':emp})
+    form = EmployeeForm(instance = emp) 
+    return render(request, 'employees/employeedetail.html', {'emp':emp, 'form':form})
