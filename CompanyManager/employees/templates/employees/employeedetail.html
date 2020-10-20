@@ -16,6 +16,10 @@
 			{% csrf_token %}
 			{{ form.as_p }}
 			<button type="submit">Save</button>
+		</form>
+		
+		<form method = "POST" action = "{% url 'employees:deleteEmployee' emp.id %}">
+			{% csrf_token %}
 			<button type="submit">Delete</button>
 		</form>
 	</body>
