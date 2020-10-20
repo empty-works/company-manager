@@ -9,9 +9,14 @@
 	</head>
 
 	<body>
+		{{ error }}
+
 		<h1>{{ emp.firstName }} {{ emp.lastName }}</h1>
-		<form action = "POST">
+		<form method = "POST">
+			{% csrf_token %}
 			{{ form.as_p }}
+			<button type="submit">Save</button>
+			<button type="submit">Delete</button>
 		</form>
 	</body>
 	{% endblock %}

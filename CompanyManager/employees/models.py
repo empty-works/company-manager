@@ -11,8 +11,8 @@ EMP_TYPES = {
 }
 
 class Employee(models.Model):
-    firstName = models.CharField(max_length = 1000)
-    lastName = models.CharField(max_length = 1000)
+    firstName = models.CharField(max_length = 200)
+    lastName = models.CharField(max_length = 200)
     birthdate = models.DateField(blank = True)
     dateCreated = models.DateTimeField(auto_now_add = True, null = True) # Required so no blank=True
     dateHired = models.DateTimeField(null = True, blank = True)
@@ -23,7 +23,7 @@ class Employee(models.Model):
             choices = EMP_TYPES,
             default = 'potential'
             )
-    address = models.CharField(max_length = 2000)
+    address = models.CharField(max_length = 1000)
     email = models.EmailField(blank = True)
     picture = models.ImageField(upload_to = 'employees/images/', default = None)
     notes = models.TextField(blank = True)
