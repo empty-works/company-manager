@@ -1,11 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Employee
 from .forms import EmployeeForm
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def employees(request):
     emps = Employee.objects.all()
     return render(request, 'employees/employees.html', {'emps': emps})
 
+@login_required
 def addEmployee(request):
     if request.method == 'GET':
         return render(request, 'employees/addemployee.html', {'form': EmployeeForm()})
@@ -18,6 +21,7 @@ def addEmployee(request):
         except ValueError:
             return render(request, 'employees/addemployee.html', {'form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
 
+@login_required
 def viewEmployee(request, employees_pk):
     emp = get_object_or_404(Employee, pk = employees_pk)
     if request.method == 'GET':
@@ -31,6 +35,7 @@ def viewEmployee(request, employees_pk):
         except ValueError:
             return render(request, 'employees/addemployee.html', {'form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
 
+@login_required
 def deleteEmployee(request, employees_pk):
     emp = get_object_or_404(Employee, pk = employees_pk)
     if request.method == 'POST':
