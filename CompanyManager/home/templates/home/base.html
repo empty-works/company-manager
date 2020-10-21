@@ -13,36 +13,38 @@
 
 	<body>
 
-		{% if user.is_authenticated %}
 
-		<nav class="navbar navbar-expand-lg navbar-custom">
-			<a class="navbar-brand" href="{% url 'home:home' %}">
-				<img src="/media/base/images/CMLogo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-				Company
-			</a>
-  		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-    			<span class="navbar-toggler-icon"></span>
-  		</button>
-		  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-		    <div class="navbar-nav">
-		      <a class="nav-link" href="{% url 'about' %}">About</a>
-		      <a class="nav-link" href="{% url 'employees:employees' %}">Employees</a>
-		      <a class="nav-link" href="{% url 'blog:all_blogs' %}">Blog</a>
-		    </div>
-		  </div>
-		</nav><br>
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <a class="navbar-brand" href="{% url 'home:home' %}">
+                <img src="/media/base/images/CMLogo.png" width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+                    Company
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+		    {% if user.is_authenticated %}
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                        <a class="nav-link" href="{% url 'employees:employees' %}">Employees</a>
+                        <a class="nav-link" href="{% url 'blog:all_blogs' %}">Blog</a>
+                    </div>
+                </div>
+		    {% endif %}
+        </nav><br>
 
-		<p>Logged in as {{ user.username }}</p>
+        <p>Logged in as {{ user.username }}</p>
 
-		<form action="{% url 'home:logoutuser' %}" method="POST">
-			{% csrf_token %}
-			<button type="submit">Logout</button>
-		</form>
+        <form action="{% url 'home:logoutuser' %}" method="POST">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
 		
 		{% else %}
 		
-		<a href="{% url 'home:signupuser' %}">Sign Up</a><br>
-		<a href="{% url 'home:loginuser' %}">Log In</a>
+            <a href="{% url 'home:signupuser' %}">Sign Up</a><br>
+            <a href="{% url 'home:loginuser' %}">Log In</a>
 
 		{% endif %}
 

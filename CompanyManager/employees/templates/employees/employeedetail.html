@@ -15,12 +15,12 @@
 		<form method = "POST">
 			{% csrf_token %}
 			{{ form.as_p }}
-			<button type="submit">Save</button>
+			<button type="submit" class="btn btn-success">Save</button>
 		</form>
 		
 		<form method = "POST" action = "{% url 'employees:deleteEmployee' emp.id %}">
 			{% csrf_token %}
-			<button type="submit">Delete</button>
+			<button type="submit" class="btn btn-danger">Delete</button>
 		</form>
 	</body>
 	{% endblock %}
