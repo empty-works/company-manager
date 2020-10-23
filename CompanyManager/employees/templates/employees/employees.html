@@ -14,17 +14,20 @@
 		
 		<a href="{% url 'employees:addEmployee' %}">Add Employee</a>
 		<table class="table table-hover table-borderless">
-			<thead class="thead-light">
+			<thead class="tablehead-custom">
 				<tr>
+                    <th scope="col">Date Hired</th>
 					<th scope="col">Type</th>
 					<th scope="col">Name</th>
 					<th scope="col">Notes</th>
+                    <th scope="col">Edit</th>
 				</tr>
 			</thead>
 			<tbody>
 
 			{% for emp in emps  %}
 				<tr scope="row"></th>
+                <td>{{ emp.dateHired }}</td>
 				<td>{% if emp.employeeType == "executive" %}<b>{% endif %}
 					{{ emp.employeeType }}
 				{% if emp.employeeType == "executive" %}</b>{% endif %}</td>
