@@ -19,12 +19,12 @@
                       <h1 class="display-4">Welcome!</h1>
                       <p class="lead">New users sign up here.</p>
                       <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="#" role="button">Sign up</a>
+                      <a class="btn btn-primary btn-lg" href="{% url 'home:signupuser' %}" role="button">Sign up</a>
                       </p>
                       <hr class="my-4">
                       <p>Already a member? Log in here.</p>
                       <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="#" role="button">Log in</a>
+                      <a class="btn btn-primary btn-lg" href="{% url 'home:loginuser' %}" role="button">Log in</a>
                       </p>
                     </div>
                 </div>
