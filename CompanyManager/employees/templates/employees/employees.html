@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 {% extends 'home/base.html' %}
 
-
 <html>
 	<head>
 	{% block content %}
@@ -14,21 +13,22 @@
 	<body>
 		
 		<a href="{% url 'employees:addEmployee' %}">Add Employee</a>
-		<table class="table">
-			<thead>
+		<table class="table table-hover table-borderless">
+			<thead class="thead-light">
 				<tr>
-					<th scope="col">Name</th>
 					<th scope="col">Type</th>
+					<th scope="col">Name</th>
 					<th scope="col">Notes</th>
 				</tr>
 			</thead>
 			<tbody>
+
 			{% for emp in emps  %}
 				<tr scope="row"></th>
-				<td><a href="{% url 'employees:viewEmployee' emp.id %}">{{ emp.lastName }}, {{ emp.firstName }}</a></td>
 				<td>{% if emp.employeeType == "executive" %}<b>{% endif %}
 					{{ emp.employeeType }}
 				{% if emp.employeeType == "executive" %}</b>{% endif %}</td>
+				<td><a href="{% url 'employees:viewEmployee' emp.id %}">{{ emp.lastName }}, {{ emp.firstName }}</a></td>
 				<td>{{ emp.notes }}</td>
 			{% endfor %}
 				
