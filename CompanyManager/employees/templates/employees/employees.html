@@ -19,7 +19,7 @@
                     <th scope="col">Date Hired</th>
 					<th scope="col">Type</th>
 					<th scope="col">Name</th>
-					<th scope="col">Notes</th>
+					<th scope="col">Current Assignment</th>
                     <th scope="col">Edit</th>
 				</tr>
 			</thead>
@@ -31,9 +31,9 @@
 				<td>{% if emp.employeeType == "executive" %}<b>{% endif %}
 					{{ emp.employeeType }}
 				{% if emp.employeeType == "executive" %}</b>{% endif %}</td>
-				<td><a href="{% url 'employees:viewEmployee' emp.id %}">{{ emp.lastName }}, {{ emp.firstName }}</a></td>
-				<td>{{ emp.notes }}</td>
-                <td><a class="btn btn-info btn-small" href="#">Open</a>
+				<td>{{ emp.lastName }}, {{ emp.firstName }}</td>
+				<td>{{ emp.cur_assigment }}</td>
+                <td><a class="btn btn-info btn-small tbl-custom-btn" href="{% url 'employees:viewEmployee' emp.id %}">Open</a>
 			{% endfor %}
 				
 			</tbody>
