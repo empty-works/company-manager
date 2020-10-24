@@ -27,12 +27,13 @@
 
 			{% for emp in emps  %}
 				<tr scope="row"></th>
-                <td>{{ emp.dateHired }}</td>
+                <td>{{ emp.dateHired|date:"Y-M-d" }}</td>
 				<td>{% if emp.employeeType == "executive" %}<b>{% endif %}
 					{{ emp.employeeType }}
 				{% if emp.employeeType == "executive" %}</b>{% endif %}</td>
 				<td><a href="{% url 'employees:viewEmployee' emp.id %}">{{ emp.lastName }}, {{ emp.firstName }}</a></td>
 				<td>{{ emp.notes }}</td>
+                <td><a class="btn btn-info btn-small" href="#">Open</a>
 			{% endfor %}
 				
 			</tbody>
