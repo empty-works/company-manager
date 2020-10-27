@@ -36,6 +36,20 @@ def viewEmployee(request, employees_pk):
             return render(request, 'employees/addemployee.html', {'form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
 
 @login_required
+def editEmployee(request, employees_pk):
+    emp = get_object_or_404(Employee, pk = employees_pk)
+    if request.method == 'GET':
+        form = EmployeeForm(instance = emp) 
+        return render(request, 'employees/employeedetail.html', {'emp':emp, 'form':form})
+    else:
+        try: 
+            form = EmployeeForm(request.POST, instance = emp)
+            form.save()
+            return redirect('employees:employees')
+        except ValueError:
+            return render(request, 'employees/addemployee.html', {'form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
+
+@login_required
 def deleteEmployee(request, employees_pk):
     emp = get_object_or_404(Employee, pk = employees_pk)
     if request.method == 'POST':
