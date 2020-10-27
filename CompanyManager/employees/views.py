@@ -40,7 +40,7 @@ def editEmployee(request, employees_pk):
     emp = get_object_or_404(Employee, pk = employees_pk)
     if request.method == 'GET':
         form = EmployeeForm(instance = emp) 
-        return render(request, 'employees/employeedetail.html', {'emp':emp, 'form':form})
+        return render(request, 'employees/editemployeedetail.html', {'emp':emp, 'form':form})
     else:
         try: 
             form = EmployeeForm(request.POST, instance = emp)
