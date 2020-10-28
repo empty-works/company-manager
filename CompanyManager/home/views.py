@@ -5,7 +5,10 @@ from django.db import IntegrityError
 from django.contrib.auth import login, logout, authenticate
 
 def home(request):
-    return render(request, 'home/home.html')
+    if request.user.is_authenticated:
+        return redirect('employees:employees')
+    else:
+        return render(request, 'home/home.html')
 
 def signupuser(request):
     if request.method == "GET":
