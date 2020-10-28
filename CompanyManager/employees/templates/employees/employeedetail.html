@@ -9,9 +9,14 @@
 	</head>
 
 	<body>
-        <div class="container">
-            <img src="{{ emp.picture.url }}" width="300" height="300" alt="No image found.">
-            <h1>{{ emp.firstName }} {{ emp.lastName }}</h1>
+        <div class="row">
+            <div class="col-sm-4" align="center">
+                <img src="{{ emp.picture.url }}" width="300" height="300" alt="No image found.">
+                <h1>{{ emp.firstName }} {{ emp.lastName }}</h1>
+            </div>
+            <div class="col-sm-8">
+                <p>Just a test</p>
+            </div>
         </div>
 	</body>
 	{% endblock %}
