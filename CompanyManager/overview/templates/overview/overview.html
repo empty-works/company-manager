@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends 'home/base.html' %}
+
+<html>
+    {% load static %}
+    <head>
+        <meta charset="utf-8">
+        <title>Overview</title>
+        <link rel="stylesheet" href="{% static "css/default.css" %}"/>
+    </head> 
+
+    <body>
+        {% block content %}
+            <h1>Overview Placeholder</h1>
+            <table>
+                <tr>
+                    <td>
+                        <p>Latest Log Entry</p>
+                        <p>Click to see all logs</p>
+                    </td>
+                    <td>
+                        <p>Important assignments</p>
+                        <p>Click to see all assignments</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Employee Status</p>
+                        <p>Click to see full list</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <p>Help</p>
+                    </td>
+                </tr>
+            </table>
+        {% endblock %}
+    </body>
+</html>

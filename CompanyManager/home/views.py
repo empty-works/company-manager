@@ -6,7 +6,7 @@ from django.contrib.auth import login, logout, authenticate
 
 def home(request):
     if request.user.is_authenticated:
-        return redirect('employees:employees')
+        return redirect('overview:overview')
     else:
         return render(request, 'home/home.html')
 
