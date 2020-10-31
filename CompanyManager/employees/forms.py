@@ -5,7 +5,18 @@ from .models import Employee
 class EmployeeForm(ModelForm):
     class Meta:
         model = Employee
-        fields = ['firstName', 'lastName', 'birthdate', 'dateHired', 'dateFired', 'wage', 'employeeType', 'address', 'email', 'picture', 'cur_assignment']
+        fields = ['firstName', 
+                'lastName', 
+                'birthdate', 
+                'dateHired', 
+                'dateFired', 
+                'wage', 
+                'emergencyContact',
+                'employeeType', 
+                'address', 
+                'email', 
+                'picture', 
+                'cur_assignment']
         widgets = {
                 'birthdate': forms.DateInput(attrs={'class':'form-control', 'type':'date'}),
                 'dateHired': forms.DateInput(attrs={'class':'form-control', 'type':'date'}),

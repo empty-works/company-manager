@@ -25,6 +25,7 @@ class Employee(models.Model):
     dateHired = models.DateTimeField(null = True, blank = True)
     dateFired = models.DateTimeField(null = True, blank = True)
     wage = models.DecimalField(max_digits = 8, decimal_places = 2, blank = True, null = True) 
+    emergencyContact = models.CharField(max_length = 400)
     #TODO phone = models.
     employeeType = models.CharField(
             max_length = 20,
