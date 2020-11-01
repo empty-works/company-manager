@@ -20,7 +20,7 @@ class Employee(models.Model):
     firstName = models.CharField(max_length = 200)
     lastName = models.CharField(max_length = 200)
     position = models.CharField(max_length = 200, blank = True)
-    birthdate = models.DateField(blank = True)
+    birthDate = models.DateField(blank = True)
     dateCreated = models.DateTimeField(auto_now_add = True, null = True) # Required so no blank=True
     dateHired = models.DateTimeField(null = True, blank = True)
     dateFired = models.DateTimeField(null = True, blank = True)

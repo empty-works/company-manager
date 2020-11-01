@@ -7,7 +7,7 @@ class EmployeeForm(ModelForm):
         model = Employee
         fields = ['firstName', 
                 'lastName', 
-                'birthdate', 
+                'birthDate', 
                 'dateHired', 
                 'dateFired', 
                 'wage', 
@@ -18,7 +18,7 @@ class EmployeeForm(ModelForm):
                 'picture', 
                 'cur_assignment']
         widgets = {
-                'birthdate': forms.DateInput(attrs={'class':'form-control', 'type':'date'}),
+                'birthDate': forms.DateInput(attrs={'class':'form-control', 'type':'date'}),
                 'dateHired': forms.DateInput(attrs={'class':'form-control', 'type':'date'}),
                 'dateFired': forms.DateInput(attrs={'class':'form-control', 'type':'date'}),
         }
