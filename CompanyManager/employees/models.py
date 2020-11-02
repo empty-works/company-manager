@@ -34,7 +34,7 @@ class Employee(models.Model):
             )
     address = models.CharField(max_length = 1000)
     email = models.EmailField(blank = True)
-    picture = models.ImageField(upload_to = 'employees/images/', default = None, blank = True, null = True)
+    picture = models.ImageField(upload_to = 'employees/images/', default = 'employees/images/240x240_default_img.jpg', blank = True)
     cur_assignment = models.TextField(blank = True)
 
     # So the actual name of the object appears when looking at the database in Django Admin for example
