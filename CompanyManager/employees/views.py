@@ -60,3 +60,14 @@ def deleteEmployee(request, employees_pk):
 def viewEmergencyContact(request, employees_pk):
     emp = get_object_or_404(Employee, pk = employees_pk)
     return render(request, 'employees/emp_emergency_contact.html', {'emp':emp})
+
+@login_required
+def editAssignments(request, employees_pk):
+    emp = get_object_or_404(Employee, pk = employees_pk)
+    return render(request, 'employees/edit_assignments.html', {'emp':emp})
+    
+@login_required
+def editSkills(request, employees_pk):
+    emp = get_object_or_404(Employee, pk = employees_pk)
+    return render(request, 'employees/edit_skills.html', {'emp':emp})
+    
