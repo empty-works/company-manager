@@ -36,19 +36,25 @@ class Employee(models.Model):
     email = models.EmailField(blank = True)
     picture = models.ImageField(upload_to = 'employees/images/', default = 'employees/images/240x240_default_img.jpg', blank = True)
     cur_assignment = models.TextField(blank = True)
-
-class AssignmentsList(models.Model):
-    # 
-
-class Assignment(models.Model):
-    assign_list = models.ForeignKey(AssignmentsList)
-
-class SkillsList(models.Model):
-    #
-
-class Skill(models.Model):
-    #
-
+    
     # So the actual name of the object appears when looking at the database in Django Admin for example
     def __str__(self):
         return self.lastName + ", " + self.firstName
+
+class AssignmentsList(models.Model):
+    # 
+    pass
+
+class Assignment(models.Model):
+    assign_list = models.ForeignKey(
+            AssignmentsList,
+            on_delete = models.CASCADE,)
+
+class SkillsList(models.Model):
+    #
+    pass
+
+class Skill(models.Model):
+    #
+    pass
+

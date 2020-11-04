@@ -10,4 +10,6 @@ urlpatterns = [
     path('employee/<int:employees_pk>', views.editEmployee, name = 'editEmployee'),
     path('employee/<int:employees_pk>/deleted', views.deleteEmployee, name = 'deleteEmployee'),
     path('employee/<int:employees_pk>/emergency_contact', views.viewEmergencyContact, name = 'viewEmergencyContact'),
+    path('employee/<int:employees_pk>/edit_assignments', views.editAssignments, name = 'editAssignments'),
+    path('employee/<int:employees_pk>/edit_skills', views.editSkills, name = 'editSkills'),
 ]
