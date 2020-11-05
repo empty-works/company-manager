@@ -41,13 +41,12 @@ class Employee(models.Model):
     def __str__(self):
         return self.lastName + ", " + self.firstName
 
-class AssignmentsList(models.Model):
-    # 
+class ExperienceList(models.Model):
     pass
 
-class Assignment(models.Model):
-    assign_list = models.ForeignKey(
-            AssignmentsList,
+class Experience(models.Model):
+    exp_list = models.ForeignKey(
+            ExperienceList,
             on_delete = models.CASCADE,
             )
 

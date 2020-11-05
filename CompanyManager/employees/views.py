@@ -62,17 +62,17 @@ def viewEmergencyContact(request, employees_pk):
     return render(request, 'employees/emp_emergency_contact.html', {'emp':emp})
 
 @login_required
-def viewAllAssignments(request, employees_pk):
+def viewAllExperience(request, employees_pk):
     pass
 
 @login_required
-def viewAssignment(request, employees_pk):
+def viewExperience(request, employees_pk):
     pass
 
 @login_required
-def editAssignment(request, employees_pk):
+def editExperience(request, employees_pk):
     emp = get_object_or_404(Employee, pk = employees_pk)
-    return render(request, 'employees/edit_assignment.html', {'emp':emp})
+    return render(request, 'employees/edit_experience.html', {'emp':emp})
     
 @login_required
 def viewAllSkills(request, employees_pk):
