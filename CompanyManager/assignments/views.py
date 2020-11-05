@@ -1,3 +1,4 @@
 from django.shortcuts import render
 
-# Create your views here.
+def all_assignments(request):
+    return render(request, 'assignments/all_assignments.html')
