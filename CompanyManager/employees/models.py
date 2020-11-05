@@ -48,13 +48,16 @@ class AssignmentsList(models.Model):
 class Assignment(models.Model):
     assign_list = models.ForeignKey(
             AssignmentsList,
-            on_delete = models.CASCADE,)
+            on_delete = models.CASCADE,
+            )
 
 class SkillsList(models.Model):
     #
     pass
 
 class Skill(models.Model):
-    #
-    pass
+    skill_list = models.ForeignKey(
+            SkillsList,
+            on_delete = models.CASCADE,
+            ) 
 
