@@ -42,7 +42,10 @@ class Employee(models.Model):
         return self.lastName + ", " + self.firstName
 
 class ExperienceList(models.Model):
-    pass
+    emp_list = models.OneToOneField(
+            Employee,
+            on_delete = models.CASCADE,
+            )
 
 class Experience(models.Model):
     exp_list = models.ForeignKey(
