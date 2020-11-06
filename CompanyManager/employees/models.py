@@ -41,25 +41,15 @@ class Employee(models.Model):
     def __str__(self):
         return self.lastName + ", " + self.firstName
 
-class ExperienceList(models.Model):
-    emp_list = models.OneToOneField(
+class Experience(models.Model):
+    exp_list = models.ForeignKey(
             Employee,
             on_delete = models.CASCADE,
             )
 
-class Experience(models.Model):
-    exp_list = models.ForeignKey(
-            ExperienceList,
-            on_delete = models.CASCADE,
-            )
-
-class SkillsList(models.Model):
-    #
-    pass
-
 class Skill(models.Model):
     skill_list = models.ForeignKey(
-            SkillsList,
+            Employee,
             on_delete = models.CASCADE,
             ) 
 
