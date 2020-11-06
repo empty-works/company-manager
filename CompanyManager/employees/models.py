@@ -16,6 +16,13 @@ STATUS_TYPES = {
     ("former", "Former"),
 }
 
+SKILL_RANKS = {
+    ("novice", "Novice"),
+    ("intermediate", "Intermediate"),
+    ("advanced", "Advanced"),
+    ("expert", "Expert"),
+}
+
 class Employee(models.Model):
     firstName = models.CharField(max_length = 200)
     lastName = models.CharField(max_length = 200)
@@ -30,7 +37,7 @@ class Employee(models.Model):
     employeeType = models.CharField(
             max_length = 20,
             choices = EMP_TYPES,
-            default = 'potential'
+            default = 'potential',
             )
     address = models.CharField(max_length = 1000)
     email = models.EmailField(blank = True)
@@ -42,14 +49,25 @@ class Employee(models.Model):
         return self.lastName + ", " + self.firstName
 
 class Experience(models.Model):
-    exp_list = models.ForeignKey(
+    employee = models.ForeignKey(
             Employee,
             on_delete = models.CASCADE,
+            null = True,
             )
+    from_date = models.DateField(null = True)
+    to_date = models.DateField(null = True)
+    text = models.TextField(blank = True)
 
 class Skill(models.Model):
-    skill_list = models.ForeignKey(
+    employee = models.ForeignKey(
             Employee,
             on_delete = models.CASCADE,
+            null = True,
+            ) 
+    name = models.CharField(max_length = 200, blank = True)
+    rank = models.CharField(
+            max_length = 50,
+            choices = SKILL_RANKS,
+            default = 'novice',
             ) 
 
