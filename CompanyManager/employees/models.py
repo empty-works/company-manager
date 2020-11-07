@@ -48,6 +48,8 @@ class Employee(models.Model):
     def __str__(self):
         return self.lastName + ", " + self.firstName
 
+# TODO MAKE EMPLOYEE AN ABSTRACT CLASS AND EMPLOYEE TYPES AS SUBCLASSES
+
 class Experience(models.Model):
     employee = models.ForeignKey(
             Employee,
@@ -56,7 +58,7 @@ class Experience(models.Model):
             )
     from_date = models.DateField(null = True)
     to_date = models.DateField(null = True)
-    text = models.TextField(blank = True)
+    text = models.TextField(default = "INSIDE EXPERIENCE TEXT", blank = True)
 
 class Skill(models.Model):
     employee = models.ForeignKey(
