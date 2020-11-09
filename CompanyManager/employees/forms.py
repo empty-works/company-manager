@@ -30,3 +30,5 @@ class EmployeeForm(ModelForm):
         self.fields['dateFired'].required = False
         self.fields['picture'].required = False
         self.fields['cur_assignment'].required = False
+
+# TODO create separate forms for Experience and Skills 

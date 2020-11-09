@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Employee
+from .models import Experience
 from .forms import EmployeeForm
 from django.contrib.auth.decorators import login_required
 
@@ -15,6 +16,7 @@ def addEmployee(request):
     else:
         # Essentially takes the form from GET and melds the fields into a POST thing. Awesome.
         try:
+            # TODO include forms for Experience and Skills
             form = EmployeeForm(request.POST)
             form.save() 
             return render(request, 'employees/employees.html')
