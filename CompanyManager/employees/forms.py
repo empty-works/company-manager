@@ -2,6 +2,7 @@ from django.forms import ModelForm
 from django import forms
 from .models import Employee
 from .models import Experience 
+from .models import Skill
 
 class EmployeeForm(ModelForm):
     class Meta:
@@ -32,3 +33,13 @@ class EmployeeForm(ModelForm):
         self.fields['cur_assignment'].required = False
 
 # TODO create separate forms for Experience and Skills 
+class ExperienceForm(ModelForm):
+    class Meta:
+        fields = ['from_date',
+                  'to_date',
+                  'text',]
+
+class SkillForm(ModelForm):
+    class Meta:
+        fields = ['name',
+                  'rank',]
