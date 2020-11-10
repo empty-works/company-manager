@@ -12,16 +12,16 @@ def employees(request):
 @login_required
 def addEmployee(request):
     if request.method == 'GET':
-        return render(request, 'employees/addemployee.html', {'form': EmployeeForm()})
+        return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm()})
     else:
         # Essentially takes the form from GET and melds the fields into a POST thing. Awesome.
         try:
             # TODO include forms for Experience and Skills
-            form = EmployeeForm(request.POST)
-            form.save() 
+            employee_form = EmployeeForm(request.POST)
+            employee_form.save() 
             return render(request, 'employees/employees.html')
         except ValueError:
-            return render(request, 'employees/addemployee.html', {'form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
+            return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
 
 @login_required
 def viewEmployee(request, employees_pk):

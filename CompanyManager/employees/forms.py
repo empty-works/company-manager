@@ -32,7 +32,6 @@ class EmployeeForm(ModelForm):
         self.fields['picture'].required = False
         self.fields['cur_assignment'].required = False
 
-# TODO create separate forms for Experience and Skills 
 class ExperienceForm(ModelForm):
     class Meta:
         fields = ['from_date',
