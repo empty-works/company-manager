@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Employee
 from .models import Experience
 from .forms import EmployeeForm
+from .forms import ExperienceForm
+from .forms import SkillForm
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -18,7 +20,18 @@ def addEmployee(request):
         try:
             # TODO include forms for Experience and Skills
             employee_form = EmployeeForm(request.POST)
-            employee_form.save() 
+            exp_form = ExperienceForm(request.POST)
+            skill_form = SkillForm(request.POST)
+            if employee_form.is_valid and exp_form.is_valid and skill_form.is_valid:
+                employee = employee_form.save(commit = False) 
+                employee.recorded_by(request.user)
+                #employee_form.save() 
+                exp = exp_form.save(False)
+                exp.employee = employee
+                exp_form.save()
+                skill = skill_form.save(False)
+                skill.employee = employee
+                skill_form.save()
             return render(request, 'employees/employees.html')
         except ValueError:
             return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
