@@ -17,12 +17,43 @@
             <h2>{{ error }}</h2>
             <form method="POST">
                 {% csrf_token %}
+                <h3>Personal</h3><br>
                 <div class="form-row">
                     <div class="form-group col-md-6 mb-0">
                         {{ employee_form.firstName | as_crispy_field }}
                     </div>
                     <div class="form-group col-md-6 mb-0">
                         {{ employee_form.lastName | as_crispy_field }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                        {{ employee_form.birthDate | as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                        {{ employee_form.email | as_crispy_field }}
+                    </div>
+                </div>
+                {{ employee_form.address | as_crispy_field }}
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                        {{ employee_form.employeeType | as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                        {{ employee_form.dateHired | as_crispy_field }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                        {{ employee_form.dateHired | as_crispy_field }}
+                    </div>
+                    <div class="form-group col-md-6 mb-0">
+                        {{ employee_form.dateFired | as_crispy_field }}
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6 mb-0">
+                        {{ employee_form.wage | as_crispy_field }}
                     </div>
                 </div>
                 <button type="submit">Add</button>
