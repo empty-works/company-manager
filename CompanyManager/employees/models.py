@@ -43,6 +43,7 @@ class Employee(models.Model):
     email = models.EmailField(blank = True)
     picture = models.ImageField(upload_to = 'employees/images/', default = 'employees/images/240x240_default_img.jpg', blank = True)
     cur_assignment = models.TextField(blank = True)
+    recorded_by = models.ForeignKey(User, default= None, null=True, on_delete=models.CASCADE)
     
     # So the actual name of the object appears when looking at the database in Django Admin for example
     def __str__(self):

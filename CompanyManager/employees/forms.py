@@ -34,11 +34,13 @@ class EmployeeForm(ModelForm):
 
 class ExperienceForm(ModelForm):
     class Meta:
+        model = Experience 
         fields = ['from_date',
                   'to_date',
                   'text',]
 
 class SkillForm(ModelForm):
     class Meta:
+        model = Skill
         fields = ['name',
                   'rank',]

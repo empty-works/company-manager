@@ -14,7 +14,11 @@ def employees(request):
 @login_required
 def addEmployee(request):
     if request.method == 'GET':
-        return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm()})
+        employee_form = EmployeeForm()
+        exp_form = ExperienceForm()
+        skill_form = SkillForm()
+        context = {'employee_form':employee_form, 'exp_form':exp_form, 'skill_form':skill_form}
+        return render(request, 'employees/addemployee.html', context)
     else:
         # Essentially takes the form from GET and melds the fields into a POST thing. Awesome.
         try:
@@ -32,11 +36,11 @@ def addEmployee(request):
                 skill.employee = employee
                 skill_form.save()
 
-            employee_form = forms.EmployeeForm()
-            exp_form = forms.ExperienceForm()
-            skill_form = forms.SkillForm()
-            context = {'employee_form':employee_form, 'exp_form':exp_form, 'skill_form':skill_form}
-            return render(request, 'employees/employees.html', context)
+            #employee_form = forms.EmployeeForm()
+            #exp_form = forms.ExperienceForm()
+            #skill_form = forms.SkillForm()
+            #context = {'employee_form':employee_form, 'exp_form':exp_form, 'skill_form':skill_form}
+            return render(request, 'employees/employees.html')
         except ValueError:
             return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
 
