@@ -12,6 +12,7 @@
 	<body>
 		{% block content %}
         <div class="container">
+        <a href="{{request.META.HTTP_REFERER}}">Back</a>
             <h1>Add Employee</h1> 
             <br><br>
             <h2>{{ error }}</h2>

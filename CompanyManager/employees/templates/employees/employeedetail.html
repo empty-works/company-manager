@@ -11,6 +11,7 @@
 
 	{% block content %}
 	<body>
+        <a href="{{request.META.HTTP_REFERER}}">Back</a>
         <div class="row h-100">
             <div class="col-md-4" align="center">
                 <img src="{{ emp.picture.url }}" width="300" height="300" alt="No image found.">
