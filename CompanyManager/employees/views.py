@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Employee
 from .models import Experience
 from .forms import EmployeeForm
-from .forms import ExperienceForm
+#from .forms import ExperienceForm
 from .forms import SkillForm
 from django.contrib.auth.decorators import login_required
 
@@ -15,23 +15,24 @@ def employees(request):
 def addEmployee(request):
     if request.method == 'GET':
         employee_form = EmployeeForm()
-        exp_form = ExperienceForm()
+        #exp_form = ExperienceForm()
         skill_form = SkillForm()
-        context = {'employee_form':employee_form, 'exp_form':exp_form, 'skill_form':skill_form}
+        context = {'employee_form':employee_form, 'skill_form':skill_form}
         return render(request, 'employees/addemployee.html', context)
     else:
         # Essentially takes the form from GET and melds the fields into a POST thing. Awesome.
         try:
             employee_form = forms.EmployeeForm(request.POST)
-            exp_form = forms.ExperienceForm(request.POST)
+            #exp_form = forms.ExperienceForm(request.POST)
             skill_form = forms.SkillForm(request.POST)
             if employee_form.is_valid and exp_form.is_valid and skill_form.is_valid:
                 employee = employee_form.save(commit = False) 
                 employee.recorded_by(request.user)
                 #employee_form.save() 
-                exp = exp_form.save(False)
-                exp.employee = employee
-                exp_form.save()
+
+                #exp = exp_form.save(False)
+                #exp.employee = employee
+                #exp_form.save()
                 skill = skill_form.save(False)
                 skill.employee = employee
                 skill_form.save()
