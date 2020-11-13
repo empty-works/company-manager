@@ -33,12 +33,23 @@ class EmployeeForm(ModelForm):
         self.fields['picture'].required = False
         self.fields['cur_assignment'].required = False
 
-class ExperienceForm(ModelForm):
-    class Meta:
-        model = Experience 
-        fields = ['from_date',
-                  'to_date',
-                  'text',]
+ExperienceModelFormset = modelformset_factory(
+    Experience,
+    fields = ('from_date', 'to_date', 'text'),
+    extra = 1,
+    widgets = {'text': forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Description of experience'
+        })
+    }
+)
+
+#class ExperienceForm(ModelForm):
+#    class Meta:
+#        model = Experience 
+#        fields = ['from_date',
+#                  'to_date',
+#                  'text',]
 
 class SkillForm(ModelForm):
     class Meta:
