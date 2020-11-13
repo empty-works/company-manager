@@ -3,6 +3,7 @@ from .models import Employee
 from .models import Experience
 from .forms import EmployeeForm
 #from .forms import ExperienceForm
+from .forms import ExperienceModelFormset
 from .forms import SkillForm
 from django.contrib.auth.decorators import login_required
 
@@ -37,10 +38,6 @@ def addEmployee(request):
                 skill.employee = employee
                 skill_form.save()
 
-            #employee_form = forms.EmployeeForm()
-            #exp_form = forms.ExperienceForm()
-            #skill_form = forms.SkillForm()
-            #context = {'employee_form':employee_form, 'exp_form':exp_form, 'skill_form':skill_form}
             return render(request, 'employees/employees.html')
         except ValueError:
             return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
@@ -94,9 +91,24 @@ def viewExperience(request, employees_pk):
     pass
 
 @login_required
+def createExperienceForm(request):
+    template_name = 'employees/addexperience.html'
+    heading_message = 'Create Experience'
+    if request.method == 'GET':
+        # Don't display already saved model instance
+        formset = ExperienceModelFormset(queryset = Experience.object.none())
+    elif request.method == 'POST':
+        formset = ExperienceModelFormset(request.POST)
+        if formset.is_valid():
+            for form in formset:
+                if form.cleaned_data.get('text'):
+                    form.save()
+            return redirect('employees:viewEmployee')
+
+@login_required
 def editExperience(request, employees_pk):
     emp = get_object_or_404(Employee, pk = employees_pk)
-    return render(request, 'employees/edit_experience.html', {'emp':emp})
+    return render(request, 'employees/editexperience.html', {'emp':emp})
     
 @login_required
 def viewAllSkills(request, employees_pk):
