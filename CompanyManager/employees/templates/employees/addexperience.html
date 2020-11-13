@@ -11,6 +11,22 @@
     <body>
 		{% block content %}
 
+        <form class = "form-horizontal" method = "POST" action = "">
+            {% csrf_token %}
+            {{ formset.management_form }}
+            {% for form in formset %}
+            <div class="row form-row spacer">
+                <div class = "col-2">
+                    <label>{{ form.name.label }}</label>
+                </div>
+                <div class="col-4">
+                    <div class="input-group">
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
 		{% endblock %}
     </body>
 </html>
