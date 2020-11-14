@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.forms import formset_factory
 from .models import Employee
 from .models import Experience
 from .forms import EmployeeForm
-#from .forms import ExperienceForm
 from .forms import ExperienceModelFormset
 from .forms import SkillForm
 from django.contrib.auth.decorators import login_required
@@ -92,22 +92,24 @@ def viewExperience(request, employees_pk):
 
 @login_required
 def addExperienceForm(request):
-    template_name = 'employees/addexperience.html'
-    heading_message = 'Create Experience'
+   # template_name = 'employees/addexperience.html'
+   # heading_message = 'Create Experience'
+    ExpFormSet = formset_factory(ExperienceModelFormset)
     if request.method == 'GET':
         # Don't display already saved model instance
-        formset = ExperienceModelFormset(queryset = Experience.object.none())
+        formset = ExpFormSet()
     elif request.method == 'POST':
-        formset = ExperienceModelFormset(request.POST)
+        formset = ExpFormSet(request.POST)
         if formset.is_valid():
             for form in formset:
                 if form.cleaned_data.get('text'):
                     form.save()
-            return redirect('employees:viewEmployee')
-    return render(request, template_name, {
-        'formset':formset,
-        'heading':heading_message,
-    })
+            #return redirect('employees:viewEmployee')
+    return render(request, 'employees/addexperience.html', {'formset': formset})
+   # return render(request, template_name, {
+   #     'formset':formset,
+   #     'heading':heading_message,
+   # })
 
 @login_required
 def editExperience(request, employees_pk):
