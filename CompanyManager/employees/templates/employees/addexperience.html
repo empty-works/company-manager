@@ -10,6 +10,7 @@
 
     <body>
 		{% block content %}
+        <a href="{{request.META.HTTP_REFERER}}">Back</a>
         <form class = "form-horizontal" method = "POST" action = "">
             {% csrf_token %}
             {{ formset.management_form }}

@@ -1,10 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.forms import formset_factory
+from django.forms import modelformset_factory
 from .models import Employee
 from .models import Experience
 from .forms import EmployeeForm
-#from .forms import ExperienceModelFormset
-#from .forms import ExperienceForm
 from .forms import SkillForm
 from django.contrib.auth.decorators import login_required
 
@@ -17,7 +15,6 @@ def employees(request):
 def addEmployee(request):
     if request.method == 'GET':
         employee_form = EmployeeForm()
-        exp_form = ExperienceForm()
         skill_form = SkillForm()
         context = {'employee_form':employee_form, 'skill_form':skill_form}
         return render(request, 'employees/addemployee.html', context)
@@ -25,16 +22,12 @@ def addEmployee(request):
         # Essentially takes the form from GET and melds the fields into a POST thing. Awesome.
         try:
             employee_form = forms.EmployeeForm(request.POST)
-            #exp_form = forms.ExperienceForm(request.POST)
             skill_form = forms.SkillForm(request.POST)
             if employee_form.is_valid and exp_form.is_valid and skill_form.is_valid:
                 employee = employee_form.save(commit = False) 
                 employee.recorded_by(request.user)
                 #employee_form.save() 
 
-                #exp = exp_form.save(False)
-                #exp.employee = employee
-                #exp_form.save()
                 skill = skill_form.save(False)
                 skill.employee = employee
                 skill_form.save()
@@ -93,8 +86,6 @@ def viewExperience(request, employees_pk):
 
 @login_required
 def addExperienceForm(request):
-   # template_name = 'employees/addexperience.html'
-   # heading_message = 'Create Experience'
     ExpFormSet = modelformset_factory(Experience, fields = ('from_date', 'to_date', 'text'))
     if request.method == 'GET':
         # Don't display already saved model instance
@@ -103,15 +94,7 @@ def addExperienceForm(request):
         formset = ExpFormSet(request.POST, request.FILES)
         if formset.is_valid():
             form.save()
-            #for form in formset:
-            #    if form.cleaned_data.get('text'):
-            #        form.save()
-            #return redirect('employees:viewEmployee')
     return render(request, 'employees/addexperience.html', {'formset': formset})
-   # return render(request, template_name, {
-   #     'formset':formset,
-   #     'heading':heading_message,
-   # })
 
 @login_required
 def editExperience(request, employees_pk):
