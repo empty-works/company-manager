@@ -91,7 +91,7 @@ def viewExperience(request, employees_pk):
     pass
 
 @login_required
-def createExperienceForm(request):
+def addExperienceForm(request):
     template_name = 'employees/addexperience.html'
     heading_message = 'Create Experience'
     if request.method == 'GET':
