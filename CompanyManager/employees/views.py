@@ -4,7 +4,7 @@ from .models import Employee
 from .models import Experience
 from .forms import EmployeeForm
 #from .forms import ExperienceModelFormset
-from .forms import ExperienceForm
+#from .forms import ExperienceForm
 from .forms import SkillForm
 from django.contrib.auth.decorators import login_required
 
@@ -17,7 +17,7 @@ def employees(request):
 def addEmployee(request):
     if request.method == 'GET':
         employee_form = EmployeeForm()
-        #exp_form = ExperienceForm()
+        exp_form = ExperienceForm()
         skill_form = SkillForm()
         context = {'employee_form':employee_form, 'skill_form':skill_form}
         return render(request, 'employees/addemployee.html', context)
@@ -95,16 +95,17 @@ def viewExperience(request, employees_pk):
 def addExperienceForm(request):
    # template_name = 'employees/addexperience.html'
    # heading_message = 'Create Experience'
-    ExpFormSet = formset_factory(ExperienceForm)
+    ExpFormSet = modelformset_factory(Experience, fields = ('from_date', 'to_date', 'text'))
     if request.method == 'GET':
         # Don't display already saved model instance
         formset = ExpFormSet()
     elif request.method == 'POST':
         formset = ExpFormSet(request.POST, request.FILES)
         if formset.is_valid():
-            for form in formset:
-                if form.cleaned_data.get('text'):
-                    form.save()
+            form.save()
+            #for form in formset:
+            #    if form.cleaned_data.get('text'):
+            #        form.save()
             #return redirect('employees:viewEmployee')
     return render(request, 'employees/addexperience.html', {'formset': formset})
    # return render(request, template_name, {

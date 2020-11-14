@@ -35,21 +35,14 @@ class EmployeeForm(ModelForm):
 
 #ExperienceModelFormset = modelformset_factory(
 #    Experience,
-#    fields = ('from_date', 'to_date', 'text'),
-#    extra = 1,
-#    widgets = {'text': forms.TextInput(attrs={
-#            'class': 'form-control',
-#            'placeholder': 'Description of experience'
-#        })
-#    }
-#)
+#    fields = ('from_date', 'to_date', 'text'))
 
-class ExperienceForm(ModelForm):
-    class Meta:
-        model = Experience 
-        fields = ['from_date',
-                  'to_date',
-                  'text',]
+#class ExperienceForm(ModelForm):
+#    class Meta:
+#        model = Experience 
+#        fields = ['from_date',
+#                  'to_date',
+#                  'text',]
 
 class SkillForm(ModelForm):
     class Meta:
