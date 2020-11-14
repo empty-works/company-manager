@@ -14,18 +14,21 @@
         <form class = "form-horizontal" method = "POST" action = "">
             {% csrf_token %}
             {{ formset.management_form }}
-            {% for form in formset %}
-            <div class="row form-row spacer">
-                <div class = "col-2">
-                    <label>{{ form.name.label }}</label>
-                </div>
-                <div class="col-4">
-                    <div class="input-group">
+            <table>
+                {% for form in formset %}
+                <div class="row form-row spacer">
+                    <div class = "col-2">
+                        <label>{{ form.name.label }}</label>
+                    </div>
+                    <div class="col-4">
+                        <div class="input-group">
 
-                        <!--TODO add form text and dates here-->
+                            <!--TODO add form text and dates here-->
+                        </div>
                     </div>
                 </div>
-            </div>
+                {% endfor %}
+            </table>
         </form>
 
 		{% endblock %}

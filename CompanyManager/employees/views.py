@@ -3,7 +3,8 @@ from django.forms import formset_factory
 from .models import Employee
 from .models import Experience
 from .forms import EmployeeForm
-from .forms import ExperienceModelFormset
+#from .forms import ExperienceModelFormset
+from .forms import ExperienceForm
 from .forms import SkillForm
 from django.contrib.auth.decorators import login_required
 
@@ -94,12 +95,12 @@ def viewExperience(request, employees_pk):
 def addExperienceForm(request):
    # template_name = 'employees/addexperience.html'
    # heading_message = 'Create Experience'
-    ExpFormSet = formset_factory(ExperienceModelFormset)
+    ExpFormSet = formset_factory(ExperienceForm)
     if request.method == 'GET':
         # Don't display already saved model instance
         formset = ExpFormSet()
     elif request.method == 'POST':
-        formset = ExpFormSet(request.POST)
+        formset = ExpFormSet(request.POST, request.FILES)
         if formset.is_valid():
             for form in formset:
                 if form.cleaned_data.get('text'):
