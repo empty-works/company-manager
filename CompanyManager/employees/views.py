@@ -37,6 +37,10 @@ def addEmployee(request):
             return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
 
 @login_required
+def confirmAddEmployee(request):
+    return render(request, 'employees/confirmaddemployee.html')    
+
+@login_required
 def viewEmployee(request, employees_pk):
     emp = get_object_or_404(Employee, pk = employees_pk)
     if request.method == 'GET':
