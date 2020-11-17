@@ -8,5 +8,7 @@
         <h1>Adding employee successful!</h1>
         <p>Testing first name: {{ employee.firstName }}</p>
         <p>Testing last name: {{ employee.lastName }}</p>
+        <a href="#">Edit this employee</a>
+        <a href="{% url 'employees:employees' %}">Go to employees list</a>
     </body>
 </html>
