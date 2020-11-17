@@ -15,30 +15,26 @@ def employees(request):
 def addEmployee(request):
     if request.method == 'GET':
         employee_form = EmployeeForm()
-        skill_form = SkillForm()
-        context = {'employee_form':employee_form, 'skill_form':skill_form}
+        #skill_form = SkillForm()
+        context = {'employee_form':employee_form}
         return render(request, 'employees/addemployee.html', context)
     else:
         # Essentially takes the form from GET and melds the fields into a POST thing. Awesome.
         try:
             employee_form = EmployeeForm(request.POST)
-            skill_form = SkillForm(request.POST)
-            #if employee_form.is_valid and exp_form.is_valid and skill_form.is_valid:
-            #    employee = employee_form.save(commit = False) 
-            #    employee.recorded_by(request.user)
-                #employee_form.save() 
+            #skill_form = SkillForm(request.POST)
+            if employee_form.is_valid:
+                #employee = employee_form.save(commit = False) 
+                #employee.recorded_by(request.user)
+                employee = employee_form.save() 
 
             #    skill = skill_form.save(False)
             #    skill.employee = employee
             #    skill_form.save()
 
-            return render(request, 'employees/confirmaddemployee.html', {'employee_form':employee_form})
+            return render(request, 'employees/addemployeesuccess.html', {'employee':employee})
         except ValueError:
             return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
-
-@login_required
-def confirmAddEmployee(request):
-    return render(request, 'employees/confirmaddemployee.html') 
 
 @login_required
 def viewEmployee(request, employees_pk):
