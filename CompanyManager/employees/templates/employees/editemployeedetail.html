@@ -13,6 +13,34 @@
         <a href="{{request.META.HTTP_REFERER}}">Back</a>
 		{{ error }}
 
+        <div id="wrapper" class="toggled">
+            <!--Sidebar-->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand">
+                        <a href="#">
+                            Back
+                        </a>
+                    </li>
+                    <li>
+                        <a href"#">Image</a>
+                    </li>
+                    <li>
+                        <a href="#">Personal</a>
+                    </li>
+                    <li>
+                        <a href="#">Experience</a>
+                    </li> 
+                    <li>
+                        <a href="#">Skills</a>
+                    </li>
+                    <li>
+                        <a href="#">Experience</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
 		<h1>{{ emp.firstName }} {{ emp.lastName }}</h1>
         <img src="{{ emp.picture.url }}" width="300" height="300" alt="No image found.">
 		<form method = "POST">
