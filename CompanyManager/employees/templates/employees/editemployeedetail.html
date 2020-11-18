@@ -6,9 +6,11 @@
 	{% block content %}
 		<meta charset="utf-8">
 		<title>Edit Employee Details</title>
+        <link rel="stylesheet" href="{% static "css/edit_employee_detail.css" %}"/> 
 	</head>
 
 	<body>
+        <a href="{{request.META.HTTP_REFERER}}">Back</a>
 		{{ error }}
 
 		<h1>{{ emp.firstName }} {{ emp.lastName }}</h1>
