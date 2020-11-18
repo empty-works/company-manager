@@ -14,10 +14,14 @@
         <a href="{{request.META.HTTP_REFERER}}">Back</a>
         <div class="row h-100">
             <div class="col-md-4" align="center">
-                <img src="{{ emp.picture.url }}" width="300" height="300" alt="No image found.">
-                <h1>{{ emp.firstName }} {{ emp.lastName }}</h1>
-                <h3>Position</h3>
-                <h3>Employee from xxxx to xxxx</h3>
+                <div class="card border-0" style="width: 20rem;">
+                    <img class="card-img-top" src="{{ emp.picture.url }}" width="300" height="300" alt="No image found.">
+                    <div class="card-body">
+                        <h1 class="card-title">{{ emp.firstName }} {{ emp.lastName }}</h1>
+                        <h5 class="card-text">Position</h5>
+                        <h5 class="card-text">Employee from xxxx to xxxx</h5>
+                    </div>
+                </div>
             </div>
             <div class="col-md-8">
                 <div class="row h-100">
