@@ -12,6 +12,7 @@
 	{% block content %}
 	<body>
         <a href="{{request.META.HTTP_REFERER}}">Back</a>
+        <a href="{% url 'employees:editEmployee' emp.id %}">Edit</a>
         <div class="row h-100">
             <div class="col-md-4" align="center">
                 <div class="card border-0">

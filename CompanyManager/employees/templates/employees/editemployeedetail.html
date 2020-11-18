@@ -2,6 +2,7 @@
 {% extends 'home/base.html' %}
 
 <html>
+	{% load static %}
 	<head>
 	{% block content %}
 		<meta charset="utf-8">
@@ -41,18 +42,6 @@
             </div>
         </div>
 
-		<h1>{{ emp.firstName }} {{ emp.lastName }}</h1>
-        <img src="{{ emp.picture.url }}" width="300" height="300" alt="No image found.">
-		<form method = "POST">
-			{% csrf_token %}
-			{{ form.as_p }}
-			<button type="submit" class="btn btn-success">Save</button>
-		</form>
-		
-		<form method = "POST" action = "{% url 'employees:deleteEmployee' emp.id %}">
-			{% csrf_token %}
-			<button type="submit" class="btn btn-danger">Delete</button>
-		</form>
 	</body>
 	{% endblock %}
 </html>
