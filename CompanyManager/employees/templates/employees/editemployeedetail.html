@@ -7,7 +7,7 @@
 	{% block content %}
 		<meta charset="utf-8">
 		<title>Edit Employee Details</title>
-        <link rel="stylesheet" href="{% static "css/edit_employee_detail.css" %}"/> 
+        <link rel="stylesheet" href="{% static "css/edit_employee_base.css" %}"/> 
 	</head>
 
 	<body>
@@ -19,7 +19,7 @@
                 <ul class="sidebar-nav">
                     <li class="sidebar-brand">
                         <a href="{{request.META.HTTP_REFERER}}">
-                            Back
+                            < Back
                         </a>
                     </li>
                     <li>
@@ -39,6 +39,16 @@
                     </li>
                 </ul>
             </div>
+            <!--End Sidebar-->
+
+            <!--Page Content-->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <h1>Page Content</h1>
+                </div>
+            </div>
+            <!--End Page Content-->
+
         </div>
 
 	</body>
