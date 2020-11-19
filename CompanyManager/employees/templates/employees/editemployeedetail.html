@@ -11,7 +11,6 @@
 	</head>
 
 	<body>
-        <a href="{{request.META.HTTP_REFERER}}">Back</a>
 		{{ error }}
 
         <div id="wrapper" class="toggled">
@@ -19,12 +18,12 @@
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
                     <li class="sidebar-brand">
-                        <a href="#">
+                        <a href="{{request.META.HTTP_REFERER}}">
                             Back
                         </a>
                     </li>
                     <li>
-                        <a href"#">Image</a>
+                        <a href="#">Image</a>
                     </li>
                     <li>
                         <a href="#">Personal</a>
