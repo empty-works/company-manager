@@ -51,11 +51,12 @@ def viewEmployee(request, employees_pk):
             return render(request, 'employees/addemployee.html', {'form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
 
 @login_required
+#DON'T USE THIS VIEW. MAKE IT SO INDIVIDUAL ELEMENTS LIKE IMAGE OR PERSONAL SECTIONS ARE DIRECTLY LINKED
 def editEmployee(request, employees_pk):
     emp = get_object_or_404(Employee, pk = employees_pk)
     if request.method == 'GET':
         form = EmployeeForm(instance = emp) 
-        return render(request, 'employees/editemployeedetail.html', {'emp':emp, 'form':form})
+        return render(request, 'employees/edit_sections/editemployeebase.html', {'emp':emp, 'form':form})
     else:
         try: 
             form = EmployeeForm(request.POST, instance = emp)
