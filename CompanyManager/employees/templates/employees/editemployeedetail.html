@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% extends 'home/base.html' %}
+
+<html>
+	{% load static %}
+	<head>
+		<meta charset="utf-8">
+		<title>Edit Employee Details</title>
+        <link rel="stylesheet" href="{% static "css/edit_employee_base.css" %}"/> 
+	</head>
+
+	<body>
+		{{ error }}
+
+        <div id="wrapper" class="toggled">
+            <!--Sidebar-->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand">
+                        <a href="{{request.META.HTTP_REFERER}}">
+                            < Back
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">Image</a>
+                    </li>
+                    <li>
+                        <a href="#">Personal</a>
+                    </li>
+                    <li>
+                        <a href="#">Experience</a>
+                    </li> 
+                    <li>
+                        <a href="#">Skills</a>
+                    </li>
+                    <li>
+                        <a href="#">Experience</a>
+                    </li>
+                </ul>
+            </div>
+            <!--End Sidebar-->
+
+            <!--Page Content-->
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    <h1>Page Content</h1>
+                </div>
+            </div>
+            <!--End Page Content-->
+
+        </div>
+
+	</body>
+	{% block content %}{% endblock %}
+</html>
