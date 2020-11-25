@@ -13,17 +13,17 @@
         <a href="{{request.META.HTTP_REFERER}}">Back</a>
         <form class = "form-horizontal" method = "POST" action = "">
             {% csrf_token %}
-            {{ formset.management_form }}
+            {{ exp_formset.management_form }}
             <table>
-                {% for form in formset %}
+                {% for form in exp_formset %}
                 <div class="row form-row spacer">
                     <div class = "col-2">
                         <label>{{ form.name.label }}</label>
                     </div>
                     <div class="col-4">
                         <div class="input-group">
+                            <h1>TESTING EXPERIENCE FORMSET</h1><br>
                             {{ form }}
-                            <h1>TESTING EXPERIENCE FORMSET</h1>
                             <!--TODO add form text and dates here-->
                         </div>
                     </div>

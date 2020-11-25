@@ -90,12 +90,12 @@ def addExperienceForm(request):
     ExpFormSet = modelformset_factory(Experience, fields = ('from_date', 'to_date', 'text'))
     if request.method == 'GET':
         # Don't display already saved model instance
-        formset = ExpFormSet()
+        exp_formset = ExpFormSet()
     elif request.method == 'POST':
-        formset = ExpFormSet(request.POST, request.FILES)
-        if formset.is_valid():
+        exp_formset = ExpFormSet(request.POST, request.FILES)
+        if exp_formset.is_valid():
             form.save()
-    return render(request, 'employees/addexperience.html', {'formset': formset})
+    return render(request, 'employees/addexperience.html', {'exp_formset': exp_formset})
 
 @login_required
 def editExperience(request, employees_pk):
