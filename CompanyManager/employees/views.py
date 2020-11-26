@@ -88,6 +88,7 @@ def viewExperience(request, employees_pk):
 @login_required
 def addExperienceForm(request):
     ExpFormSet = modelformset_factory(Experience, fields = ('from_date', 'to_date', 'text'))
+    user = request.user
     if request.method == 'GET':
         # Don't display already saved model instance
         exp_formset = ExpFormSet()
@@ -97,7 +98,12 @@ def addExperienceForm(request):
             new_exp = [] #Save the data for each form in the formset.
 
             for exp in exp_formset:
+                from_date = exp.cleaned_data.get('from_date')
+                to_date = exp.cleaned_data.get('to_date')
+                text = exp.cleaned_data.get('text')
 
+                if from_date and to_date and text:
+                    new_exp.append(Experience(user=user, from_date=from_date, to_date=to_date, text=text))
 
             form.save()
     return render(request, 'employees/addexperience.html', {'exp_formset': exp_formset})
