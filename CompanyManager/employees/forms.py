@@ -38,3 +38,10 @@ class SkillForm(ModelForm):
         model = Skill
         fields = ['name',
                   'rank',]
+
+class ExperienceForm(ModelForm):
+    class Meta:
+        model = Experience
+        fields = ['from_date',
+                  'to_date', 
+                  'text',]

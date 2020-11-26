@@ -94,6 +94,11 @@ def addExperienceForm(request):
     elif request.method == 'POST':
         exp_formset = ExpFormSet(request.POST, request.FILES)
         if exp_formset.is_valid():
+            new_exp = [] #Save the data for each form in the formset.
+
+            for exp in exp_formset:
+
+
             form.save()
     return render(request, 'employees/addexperience.html', {'exp_formset': exp_formset})
 
