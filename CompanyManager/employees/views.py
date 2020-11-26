@@ -1,3 +1,5 @@
+from django.contrib import messages
+from django.db import IntegrityError, transaction
 from django.shortcuts import render, get_object_or_404, redirect
 from django.forms import modelformset_factory
 from .models import Employee
@@ -104,6 +106,18 @@ def addExperienceForm(request):
 
                 if from_date and to_date and text:
                     new_exp.append(Experience(user=user, from_date=from_date, to_date=to_date, text=text))
+            try:
+                with transaction.atomic():
+                    #Replace old entries with the new ones
+                    Experience.objects.filter(user=user).delete()
+                    Experience.objects.bulk_create(new_exp)
+
+                    #Notify users that it worked
+                    messages.success(request, 'Experience has been updated.')
+            
+            except IntegrityError: #transaction failed
+                messages.error(request, 'There was error updating experience.')
+                return redirect('employees:employees')
 
             form.save()
     return render(request, 'employees/addexperience.html', {'exp_formset': exp_formset})
