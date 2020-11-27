@@ -11,6 +11,13 @@
     <body>
 		{% block content %}
         <a href="{{request.META.HTTP_REFERER}}">Back</a>
+
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
         <form class = "form-horizontal" method = "POST" action = "">
             {% csrf_token %}
             {{ exp_formset.management_form }}
