@@ -6,6 +6,7 @@ from .models import Employee
 from .models import Experience
 from .forms import EmployeeForm
 from .forms import SkillForm
+from .forms import ExperienceForm
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -119,7 +120,6 @@ def addExperienceForm(request):
                 messages.error(request, 'There was error updating experience.')
                 return redirect('employees:employees')
 
-            form.save()
     return render(request, 'employees/addexperience.html', {'exp_formset': exp_formset})
 
 @login_required
