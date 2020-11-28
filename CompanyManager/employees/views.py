@@ -106,11 +106,11 @@ def addExperienceForm(request):
                 text = exp.cleaned_data.get('text')
 
                 if from_date and to_date and text:
-                    new_exp.append(Experience(user=user, from_date=from_date, to_date=to_date, text=text))
+                    new_exp.append(Experience(from_date=from_date, to_date=to_date, text=text))
             try:
                 with transaction.atomic():
                     #Replace old entries with the new ones
-                    Experience.objects.filter(user=user).delete()
+                    #Experience.objects.filter(user=user).delete()
                     Experience.objects.bulk_create(new_exp)
 
                     #Notify users that it worked
