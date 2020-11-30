@@ -22,6 +22,7 @@
             {% csrf_token %}
             {{ exp_formset.management_form }}
             <table>
+                <h1>TESTING EXPERIENCE FORMSET</h1><br>
                 {% for form in exp_formset %}
                 <div class="row form-row spacer">
                     <div class = "col-2">
@@ -32,8 +33,7 @@
 
                     <div class="col-4">
                         <div class="input-group">
-                            <h1>TESTING EXPERIENCE FORMSET</h1><br>
-                            {{ form }}
+                            <p class="link-formset">{{ form }}</p>
                             <!--TODO add form text and dates here-->
                         </div>
                     </div>
@@ -43,7 +43,7 @@
             <input type="submit" value="Add" class="button"/>
         </form>
         <!-- Include formset plugin - including jQuery dependency -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="{% static 'js/jquery.formset.js' %}"></script>
         <script>
             $('.link-formset').formset({
