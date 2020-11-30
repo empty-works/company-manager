@@ -7,6 +7,7 @@ from .models import Experience
 from .forms import EmployeeForm
 from .forms import SkillForm
 from .forms import ExperienceForm
+from django.forms.formsets import formset_factory
 from django.contrib.auth.decorators import login_required
 
 @login_required
@@ -90,13 +91,12 @@ def viewExperience(request, employees_pk):
 
 @login_required
 def addExperienceForm(request):
-    ExpFormSet = modelformset_factory(Experience, fields = ('from_date', 'to_date', 'text'))
-    user = request.user
+    ExpFormSet = formset_factory(ExperienceForm)
     if request.method == 'GET':
         # Don't display already saved model instance
         exp_formset = ExpFormSet()
     elif request.method == 'POST':
-        exp_formset = ExpFormSet(request.POST, request.FILES)
+        exp_formset = ExpFormSet(request.POST)
         if exp_formset.is_valid():
             new_exp = [] #Save the data for each form in the formset.
 
