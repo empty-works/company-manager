@@ -18,7 +18,7 @@
             {% endfor %}
         {% endif %}
 
-        <form class = "form-horizontal" method = "POST" action = "">
+        <form class="form-horizontal h-100" method="POST" action="">
             {% csrf_token %}
             {{ exp_formset.management_form }}
             <table>
