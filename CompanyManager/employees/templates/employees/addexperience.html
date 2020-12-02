@@ -32,8 +32,8 @@
                     <!-- ADD link-formset SOMEHOW to make it work on the form!!! -->
 
                     <div class="col-4">
-                        <div class="input-group">
-                            <p class="link-formset">{{ form }}</p>
+                        <div class="input-group link-formset">
+                            {{ form }}
                             <!--TODO add form text and dates here-->
                         </div>
                     </div>
@@ -51,7 +51,6 @@
                 deleteText: 'remove'
             });
         </script>
-        <script src="js/employee.js" type="text/javascript"></script>
 		{% endblock %}
     </body>
 </html>

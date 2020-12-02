@@ -9,6 +9,7 @@ from .forms import SkillForm
 from .forms import ExperienceForm
 from django.forms.formsets import formset_factory
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseRedirect
 
 @login_required
 def employees(request):
@@ -115,6 +116,7 @@ def addExperienceForm(request):
 
                     #Notify users that it worked
                     messages.success(request, 'Experience has been updated.')
+                    return redirect('employees:addEmployee')
             
             except IntegrityError: #transaction failed
                 messages.error(request, 'There was error updating experience.')
