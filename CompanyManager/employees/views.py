@@ -18,15 +18,18 @@ def employees(request):
 
 @login_required
 def addEmployee(request):
+    ExpFormSet = formset_factory(ExperienceForm)
     if request.method == 'GET':
         employee_form = EmployeeForm()
+        exp_formset = ExpFormSet()
         skill_form = SkillForm()
-        context = {'employee_form':employee_form, 'skill_form':skill_form}
+        context = {'employee_form':employee_form, 'exp_formset':exp_formset, 'skill_form':skill_form}
         return render(request, 'employees/addemployee.html', context)
     else:
         # Essentially takes the form from GET and melds the fields into a POST thing. Awesome.
         try:
             employee_form = EmployeeForm(request.POST)
+            exp_formset = ExpFormSet(request.POST)
             skill_form = SkillForm(request.POST)
             if employee_form.is_valid and skill_form.is_valid:
                 #employee = employee_form.save(commit = False) 
@@ -36,6 +39,29 @@ def addEmployee(request):
                 skill = skill_form.save(False)
                 skill.employee = employee
                 skill_form.save()
+
+            if exp_formset.is_valid():
+                new_exp = [] #Save the data for each form in the formset.
+
+                for exp in exp_formset:
+                    from_date = exp.cleaned_data.get('from_date')
+                    to_date = exp.cleaned_data.get('to_date')
+                    text = exp.cleaned_data.get('text')
+
+                    if from_date and to_date and text:
+                        new_exp.append(Experience(from_date=from_date, to_date=to_date, text=text))
+                try:
+                    with transaction.atomic():
+                        #Replace old entries with the new ones
+                        #Experience.objects.filter(user=user).delete()
+                        Experience.objects.bulk_create(new_exp)
+
+                        #Notify users that it worked
+                        messages.success(request, 'Experience has been updated.')
+                
+                except IntegrityError: #transaction failed
+                    messages.error(request, 'There was error updating experience.')
+                    return redirect('employees:employees')
 
             return render(request, 'employees/addemployeesuccess.html', {'employee':employee, 'skill':skill})
         except ValueError:
