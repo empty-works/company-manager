@@ -11,6 +11,13 @@
 
 	<body>
 		{% block content %}
+
+        {% if messages %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+
         <div class="container">
         <a href="{{request.META.HTTP_REFERER}}">Back</a>
             <h1>Add Employee</h1> 
