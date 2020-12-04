@@ -63,7 +63,7 @@ def addEmployee(request):
                     messages.error(request, 'There was error updating experience.')
                     return redirect('employees:employees')
 
-            return render(request, 'employees/addemployeesuccess.html', {'employee':employee, 'skill':skill})
+            return redirect(request, 'employees/addemployeesuccess.html', {'employee':employee, 'skill':skill})
         except ValueError:
             return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
 

@@ -67,11 +67,28 @@
                 <br>
                 <h3>Experience</h3><br>
 
-                <a href="{% url 'employees:addExperienceForm' %}">Add Experience</a>
-                <br><br>
-                <button type="submit">Add</button>
+                {{ exp_formset.management_form }}
+                {% for form in exp_formset %}
+                    <div class="exp-formset">
+                        {{ form.from_date }}
+                        {{ form.to_date }}
+                        {{ form.text }}
+                    </div>
+                {% endfor %}
+                <!-- <a href="{% url 'employees:addExperienceForm' %}">Add Experience</a> -->
+                <!-- <br><br> -->
+                <!-- <button type="submit">Add</button> -->
             </form>
         </div>
+        <!-- Include formset plugin - including jQuery dependency -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="{% static 'js/jquery.formset.js' %}"></script>
+        <script>
+            $('.exp-formset').formset({
+                addText: 'add experience',
+                deleteText: 'remove'
+            });
+        </script>
 		{% endblock %}
 	</body>
 </html>
