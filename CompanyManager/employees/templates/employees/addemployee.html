@@ -71,7 +71,7 @@
 
                 {% for form in exp_formset %}
                     <div class="exp-formset">
-                        {{ form.from_date }}
+                        {{ form.from_date | as_crispy_field }}
                         {% if exp_formset.from_date.errors %}
                             {% for error in exp_formset.from_date.errors %}
                                 {{ error|escape }}
@@ -80,7 +80,7 @@
                         
                         <br>
 
-                        {{ form.to_date }}
+                        {{ form.to_date | as_crispy_field }}
                         {% if exp_formset.to_date.errors %}
                             {% for error in exp_formset.to_date.errors %}
                                 {{ error|escape }}
@@ -89,7 +89,7 @@
 
                         <br>
 
-                        {{ form.text }}
+                        {{ form.text | as_crispy_field }}
                         {% if exp_formset.text.errors %}
                             {% for error in exp_formset.text.errors %}
                                 {{ error|escape }}
