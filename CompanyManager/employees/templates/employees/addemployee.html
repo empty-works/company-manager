@@ -77,6 +77,8 @@
                                 {{ error|escape }}
                             {% endfor %}
                         {% endif %}
+                        
+                        <br>
 
                         {{ form.to_date }}
                         {% if exp_formset.to_date.errors %}
@@ -85,19 +87,22 @@
                             {% endfor %}
                         {% endif %}
 
+                        <br>
+
                         {{ form.text }}
                         {% if exp_formset.text.errors %}
                             {% for error in exp_formset.text.errors %}
                                 {{ error|escape }}
                             {% endfor %}
                         {% endif %}
+
+                        <br>
+
                     </div>
                 {% endfor %}
 
+                <br><br>
                 <button type="submit">Submit</button>
-                <!-- <a href="{% url 'employees:addExperienceForm' %}">Add Experience</a> -->
-                <!-- <br><br> -->
-                <!-- <button type="submit">Add</button> -->
             </form>
         </div>
         <!-- Include formset plugin - including jQuery dependency -->
