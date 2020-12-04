@@ -101,6 +101,12 @@
                     </div>
                 {% endfor %}
 
+                {% if exp_formset.non_form_errors %}
+                    {% for error in exp_formset.non_form_errors %} 
+                        {{ error|escape }}
+                    {% endfor %}
+                {% endif %}
+
                 <br><br>
                 <button type="submit">Submit</button>
             </form>
