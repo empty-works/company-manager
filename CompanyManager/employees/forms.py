@@ -45,3 +45,9 @@ class ExperienceForm(ModelForm):
         fields = ['from_date',
                   'to_date', 
                   'text',]
+        # Using widgets to specify date type in the form fixed issue where it 
+        # only showed up as a text field.
+        widgets = {
+                'from_date':forms.DateInput(attrs={'type':'date'}),
+                'to_date':forms.DateInput(attrs={'type':'date'}),
+                }

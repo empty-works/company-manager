@@ -57,8 +57,8 @@ class Experience(models.Model):
             on_delete = models.CASCADE,
             null = True,
             )
-    from_date = models.DateTimeField(null = True)
-    to_date = models.DateTimeField(null = True)
+    from_date = models.DateField(null = True)
+    to_date = models.DateField(null = True)
     text = models.TextField(default = "INSIDE EXPERIENCE TEXT", blank = True)
 
 class Skill(models.Model):
