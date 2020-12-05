@@ -13,7 +13,6 @@ urlpatterns = [
     path('employee/<int:employees_pk>/view_all_experience', views.viewAllExperience, name = 'viewAllExperience'),
     path('employee/<int:employees_pk>/view_experience', views.viewExperience, name = 'viewExperience'),
     path('employee/<int:employees_pk>/edit_experience', views.editExperience, name = 'editExperience'),
-    path('employee/add_experience', views.addExperienceForm, name = 'addExperienceForm'),
     path('employee/<int:employees_pk>/view_all_skills', views.viewAllSkills, name = 'viewAllSkills'),
     path('employee/<int:employees_pk>/view_skill', views.viewSkill, name = 'viewSkill'),
     path('employee/<int:employees_pk>/edit_skill', views.editSkill, name = 'editSkill'),

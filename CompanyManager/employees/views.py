@@ -117,40 +117,6 @@ def viewExperience(request, employees_pk):
     pass
 
 @login_required
-def addExperienceForm(request):
-    ExpFormSet = formset_factory(ExperienceForm)
-    if request.method == 'GET':
-        # Don't display already saved model instance
-        exp_formset = ExpFormSet()
-    elif request.method == 'POST':
-        exp_formset = ExpFormSet(request.POST)
-        if exp_formset.is_valid():
-            new_exp = [] #Save the data for each form in the formset.
-
-            for exp in exp_formset:
-                from_date = exp.cleaned_data.get('from_date')
-                to_date = exp.cleaned_data.get('to_date')
-                text = exp.cleaned_data.get('text')
-
-                if from_date and to_date and text:
-                    new_exp.append(Experience(from_date=from_date, to_date=to_date, text=text))
-            try:
-                with transaction.atomic():
-                    #Replace old entries with the new ones
-                    #Experience.objects.filter(user=user).delete()
-                    Experience.objects.bulk_create(new_exp)
-
-                    #Notify users that it worked
-                    messages.success(request, 'Experience has been updated.')
-                    return redirect('employees:addEmployee')
-            
-            except IntegrityError: #transaction failed
-                messages.error(request, 'There was error updating experience.')
-                return redirect('employees:employees')
-
-    return render(request, 'employees/addexperience.html', {'exp_formset': exp_formset})
-
-@login_required
 def editExperience(request, employees_pk):
     emp = get_object_or_404(Employee, pk = employees_pk)
     return render(request, 'employees/editexperience.html', {'emp':emp})
