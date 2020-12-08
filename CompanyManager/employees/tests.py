@@ -145,19 +145,11 @@ class ExperienceFormsetTest(TestCase):
         self.raise_formset_error(response,
                                  'Each work experience must have unique dates.')
 
-    ########### test_to_date_without_from_date_text
-    def test_from_date_without_to_date(self):
+    def test_to_date_without_from_date(self):
         """
-        Test validation fails when a link is submitted without a URL.
+        Test validation fails when a to date is submitted without a from date.
         """
-        response = self.post_data('My Link', '')
+        to_date = datetime.datetime(2012, 12, 11)
+        response = self.post_data('', to_date, 'Some text.')
 
-        self.raise_formset_error(response, 'All links must have a URL.')
-
-    def test_url_without_anchor(self):
-        """
-        Test validation fails when a link is submitted without an anchor.
-        """
-        response = self.post_data('', 'http://mylink.com')
-
-        self.raise_formset_error(response, 'All links must have an anchor.')
+        self.raise_formset_error(response, 'All to dates must be paired with a from date.')
