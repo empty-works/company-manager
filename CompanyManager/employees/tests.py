@@ -133,7 +133,7 @@ class ExperienceFormsetTest(TestCase):
         form = self.form_data(None, None, '')
         self.assertTrue(form.is_valid())
 
-    def test_duplicate_from_date(self):
+    def test_duplicate_dates(self):
         """
         Test validation fails when working dates are submitted more than once.
         """
@@ -145,30 +145,8 @@ class ExperienceFormsetTest(TestCase):
         self.raise_formset_error(response,
                                  'Each work experience must have unique dates.')
 
-    def test_duplicate_to_date(self):
-        """
-        Test validation fails when a URL is submitted more than once.
-        """
-        from_date = datetime.datetime(2008, 11, 28)
-        to_date = datetime.datetime(2012, 12, 11)
-        response = self.post_data('My Link', 'http://mylink.com',
-                                  'My Link2', 'http://mylink.com')
-
-        self.raise_formset_error(response,
-                                 'Links must have unique anchors and URLs.')
-
-    def test_duplicate_text(self):
-        """
-        Test validation fails when a URL is submitted more than once.
-        """
-        response = self.post_data('My Link', 'http://mylink.com',
-                                  'My Link2', 'http://mylink.com')
-
-        self.raise_formset_error(response,
-                                 'Links must have unique anchors and URLs.')
-
     ########### test_to_date_without_from_date_text
-    def test_anchor_without_url(self):
+    def test_from_date_without_to_date(self):
         """
         Test validation fails when a link is submitted without a URL.
         """
