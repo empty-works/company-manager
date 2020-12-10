@@ -1,7 +1,7 @@
 from django.test import TestCase
-from CompanyManager.factories import UserFactory
+from employees.factories import UserFactory
 from django.core.urlresolvers import reverse
-from CompanyManager.forms import EmployeeForm
+from employees.forms import EmployeeForm
 import datetime
 
 # Test basic add employee form
@@ -97,9 +97,9 @@ class ExperienceFormsetTest(TestCase):
 
     def post_data(self, from_date1, to_date1, text1, from_date2='', to_date2='', text2=''):
         return self.client.post(
-            reverse('test:profile-settings'),
+            reverse('employees:addEmployee'),
             data={
-                'form-TOTAL_FORMS': 2,
+                'form-TOTAL_FORMS': 1,
                 'form-INITIAL_FORMS': 0,
                 'form-0-from_date': from_date1,
                 'form-0-to_date': to_date1,
