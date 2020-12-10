@@ -2,6 +2,7 @@ from django.core.urlresolvers import reverse
 from django.test import TestCase
 from employees.factories import UserFactory
 from employees.models import Employee, Experience 
+import datetime
 
 class AddEmployeeTest(TestCase):
     def test_can_update_employee(self):
@@ -17,6 +18,11 @@ class AddEmployeeTest(TestCase):
                        'employeeType': 'Salaried',
                        'address': '1100 Hobart Ave. Culvert City, CA',
                        'email': 'hello_there@123.com',
+                       'form-TOTAL_FORMS': 1,
+                       'form-INITIAL_FORMS': 0,
+                       'form-0-from_date': datetime.datetime(2008, 11, 28),
+                       'form-0-to_date': datetime.datetime(2012, 12, 11),
+                       'form-0-text': 'Some text.',
                     },
                 )
 

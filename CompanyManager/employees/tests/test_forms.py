@@ -76,7 +76,7 @@ class ExperienceFormsetTest(TestCase):
         self.user = UserFactory()
         self.client.login(username=self.user.email, password='pass')
 
-    def form_data(self, from_date, to_date, text):
+    def form_data(self, fromDate, toDate, text):
         return EmployeeForm(
             user=self.user,
             data={
@@ -99,7 +99,7 @@ class ExperienceFormsetTest(TestCase):
         return self.client.post(
             reverse('employees:addEmployee'),
             data={
-                'form-TOTAL_FORMS': 1,
+                'form-TOTAL_FORMS': 2,
                 'form-INITIAL_FORMS': 0,
                 'form-0-from_date': from_date1,
                 'form-0-to_date': to_date1,
