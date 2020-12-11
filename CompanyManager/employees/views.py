@@ -65,7 +65,8 @@ def addEmployee(request):
 
             return redirect(request, 'employees/addemployeesuccess.html', {'employee':employee, 'skill':skill})
         except ValueError:
-            return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
+            context = {'exp_formset':exp_formset, 'skill_form':skill_form}
+            return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'}, context)
 
 @login_required
 def viewEmployee(request, employees_pk):
