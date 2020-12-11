@@ -69,6 +69,10 @@ def addEmployee(request):
             return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'}, context)
 
 @login_required
+def showSuccessAdd(request, employees_pk):
+    return render(request, 'employees/addemployeesuccess.html') 
+
+@login_required
 def viewEmployee(request, employees_pk):
     emp = get_object_or_404(Employee, pk = employees_pk)
     if request.method == 'GET':

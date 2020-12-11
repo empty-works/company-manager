@@ -29,6 +29,7 @@ class EmployeeForm(ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(EmployeeForm, self).__init__(*args, **kwargs)
+        self.fields['birthDate'].required = False
         self.fields['dateHired'].required = False
         self.fields['dateFired'].required = False
         self.fields['picture'].required = False
