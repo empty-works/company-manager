@@ -10,6 +10,7 @@ class EmployeeForm(ModelForm):
         model = Employee
         fields = ['firstName', 
                 'lastName', 
+                'position',
                 'birthDate', 
                 'dateHired', 
                 'dateFired', 
