@@ -70,7 +70,8 @@ def addEmployee(request):
 
 @login_required
 def showSuccessAdd(request, employees_pk):
-    return render(request, 'employees/addemployeesuccess.html') 
+    emp = get_object_or_404(Employee, pk = employees_pk)
+    return render(request, 'employees/addemployeesuccess.html', {'emp': emp}) 
 
 @login_required
 def viewEmployee(request, employees_pk):
