@@ -23,7 +23,7 @@
             <h1>Add Employee</h1> 
             <br><br>
             <h2>{{ error }}</h2>
-            <form method="POST">
+            <form method="POST" action={% url 'employees:showSuccessAdd' %}>
                 {% csrf_token %}
                 <h3>Personal</h3><br>
                 <div class="form-row">

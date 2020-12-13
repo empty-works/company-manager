@@ -57,21 +57,21 @@ def addEmployee(request):
                         Experience.objects.bulk_create(new_exp)
 
                         #Notify users that it worked
-                        messages.success(request, 'Experience has been updated.')
+                        #messages.success(request, 'Experience has been updated.')
                 
                 except IntegrityError: #transaction failed
                     messages.error(request, 'There was error updating experience.')
                     return redirect('employees:employees')
 
-            return redirect(request, 'employees/addemployeesuccess.html', {'employee':employee, 'skill':skill})
+            # Redirect is the action in the form in the addemployee template.
         except ValueError:
             context = {'exp_formset':exp_formset, 'skill_form':skill_form}
             return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'}, context)
 
 @login_required
-def showSuccessAdd(request, employees_pk):
-    emp = get_object_or_404(Employee, pk = employees_pk)
-    return render(request, 'employees/addemployeesuccess.html', {'emp': emp}) 
+def showSuccessAdd(request):
+    #emp = get_object_or_404(Employee, pk = employees_pk)
+    return render(request, 'employees/addemployeesuccess.html')
 
 @login_required
 def viewEmployee(request, employees_pk):
