@@ -30,15 +30,15 @@ def addEmployee(request):
         try:
             employee_form = EmployeeForm(request.POST)
             exp_formset = ExpFormSet(request.POST)
-            skill_form = SkillForm(request.POST)
-            if employee_form.is_valid and skill_form.is_valid:
+            #skill_form = SkillForm(request.POST)
+            if employee_form.is_valid and exp_formset.is_valid:
                 #employee = employee_form.save(commit = False) 
                 #employee.recorded_by(request.user)
                 employee = employee_form.save() 
 
-                skill = skill_form.save(False)
-                skill.employee = employee
-                skill_form.save()
+                #skill = skill_form.save(False)
+                #skill.employee = employee
+                #skill_form.save()
 
             if exp_formset.is_valid():
                 new_exp = [] #Save the data for each form in the formset.
