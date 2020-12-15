@@ -8,6 +8,7 @@ from .forms import EmployeeForm
 from .forms import SkillForm
 from .forms import ExperienceForm
 from django.forms.formsets import formset_factory
+from django.forms import modelformset_factory
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 
@@ -18,28 +19,33 @@ def employees(request):
 
 @login_required
 def addEmployee(request):
-    ExpFormSet = formset_factory(ExperienceForm)
+    ExpFormSet = modelformset_factory(Experience, fields=('from_date', 'to_date', 'text'))
     if request.method == 'GET':
         employee_form = EmployeeForm()
         exp_formset = ExpFormSet()
         skill_form = SkillForm()
         context = {'employee_form':employee_form, 'exp_formset':exp_formset, 'skill_form':skill_form}
         return render(request, 'employees/addemployee.html', context)
-    else:
+    elif request.method == 'POST':
         # Essentially takes the form from GET and melds the fields into a POST thing. Awesome.
         try:
             employee_form = EmployeeForm(request.POST)
             exp_formset = ExpFormSet(request.POST)
             #skill_form = SkillForm(request.POST)
-            if employee_form.is_valid and exp_formset.is_valid:
+
+            if employee_form.is_valid and exp_formset:
                 #employee = employee_form.save(commit = False) 
                 #employee.recorded_by(request.user)
                 employee = employee_form.save() 
+                exp_formset.save()
 
                 #skill = skill_form.save(False)
                 #skill.employee = employee
                 #skill_form.save()
 
+                messages.success(request, 'Experience has been updated.')
+
+            '''
             if exp_formset.is_valid():
                 new_exp = [] #Save the data for each form in the formset.
 
@@ -62,10 +68,11 @@ def addEmployee(request):
                 except IntegrityError: #transaction failed
                     messages.error(request, 'There was error updating experience.')
                     return redirect('employees:employees')
+            '''
 
             # Redirect is the action in the form in the addemployee template.
         except ValueError:
-            context = {'exp_formset':exp_formset, 'skill_form':skill_form}
+            context = {'exp_formset': exp_formset}
             return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'}, context)
 
 @login_required
