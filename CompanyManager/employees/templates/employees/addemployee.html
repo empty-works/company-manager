@@ -70,30 +70,32 @@
                 {{ exp_formset.management_form }}
 
                 <div class="exp-formset">
-                    {{ exp_formset.from_date | as_crispy_field }}
-                    {% if exp_formset.from_date.errors %}
-                        {% for error in exp_formset.from_date.errors %}
-                            {{ error|escape }}
-                        {% endfor %}
-                    {% endif %}
-                    
-                    <br>
+                    {% for exp_form in exp_formset %}
+                        {{ exp_form.from_date | as_crispy_field }}
+                        {% if exp_formset.from_date.errors %}
+                            {% for error in exp_formset.from_date.errors %}
+                                {{ error|escape }}
+                            {% endfor %}
+                        {% endif %}
+                        
+                        <br>
 
-                    {{ exp_formset.to_date | as_crispy_field }}
-                    {% if exp_formset.to_date.errors %}
-                        {% for error in exp_formset.to_date.errors %}
-                            {{ error|escape }}
-                        {% endfor %}
-                    {% endif %}
+                        {{ exp_form.to_date | as_crispy_field }}
+                        {% if exp_formset.to_date.errors %}
+                            {% for error in exp_formset.to_date.errors %}
+                                {{ error|escape }}
+                            {% endfor %}
+                        {% endif %}
 
-                    <br>
+                        <br>
 
-                    {{ exp_formset.text | as_crispy_field }}
-                    {% if exp_formset.text.errors %}
-                        {% for error in exp_formset.text.errors %}
-                            {{ error|escape }}
-                        {% endfor %}
-                    {% endif %}
+                        {{ exp_form.text | as_crispy_field }}
+                        {% if exp_formset.text.errors %}
+                            {% for error in exp_formset.text.errors %}
+                                {{ error|escape }}
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
                 </div>
 
                 {% if exp_formset.non_form_errors %}
