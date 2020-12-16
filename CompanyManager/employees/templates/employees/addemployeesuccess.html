@@ -6,8 +6,11 @@
     </head>
     <body>
         <h1>Adding employee successful!</h1>
-        <p>Testing first name: {{ employee.firstName }}</p>
-        <p>Testing last name: {{ employee.lastName }}</p>
+        <p>Testing first name: {{ employee_form.firstName }}</p>
+        <p>Testing last name: {{ employee_form.lastName }}</p>
+        <p>Testing formset from_date: {{ exp_formset.from_date }}</p>
+        <p>Testing formset to_date: {{ exp_formset.to_date }}</p>
+        <p>Testing formset text: {{ exp_formset.text }}</p>
         <a href="#">Edit this employee</a>
         <a href="{% url 'employees:employees' %}">Go to employees list</a>
     </body>
