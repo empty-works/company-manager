@@ -71,7 +71,7 @@ def addEmployee(request):
 
             # Redirect is the action in the form in the addemployee template.
             context = {'employee_form': employee_form, 'exp_formset': exp_formset} 
-            return redirect('employees:showSuccessAdd', context)
+            return render(request, 'employees/addemployeesuccess.html', context)
         except ValueError:
             context = {'exp_formset': exp_formset}
             return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'}, context)
