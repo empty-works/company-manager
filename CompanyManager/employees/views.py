@@ -19,7 +19,7 @@ def employees(request):
 
 @login_required
 def addEmployee(request):
-    ExpFormSet = modelformset_factory(Experience, fields=('from_date', 'to_date', 'text'))
+    ExpFormSet = formset_factory(ExperienceForm, extra=1)
     if request.method == 'GET':
         employee_form = EmployeeForm()
         exp_formset = ExpFormSet()
@@ -36,8 +36,7 @@ def addEmployee(request):
             if employee_form.is_valid and exp_formset:
                 #employee = employee_form.save(commit = False) 
                 #employee.recorded_by(request.user)
-                employee = employee_form.save() 
-                exp_formset.save()
+                #employee = employee_form.save() 
 
                 #skill = skill_form.save(False)
                 #skill.employee = employee
@@ -71,6 +70,8 @@ def addEmployee(request):
             '''
 
             # Redirect is the action in the form in the addemployee template.
+            context = {'employee_form': employee_form, 'exp_formset': exp_formset} 
+            return redirect('employees:showSuccessAdd', context)
         except ValueError:
             context = {'exp_formset': exp_formset}
             return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'}, context)

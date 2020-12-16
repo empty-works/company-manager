@@ -23,7 +23,7 @@
             <h1>Add Employee</h1> 
             <br><br>
             <h2>{{ error }}</h2>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <h3>Personal</h3><br>
                 <div class="form-row">
@@ -53,7 +53,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-6 mb-0">
-                        {{ employee_form.dateHired | as_crispy_field }}
+                    {{ employee_form.dateHired | as_crispy_field }}
                     </div>
                     <div class="form-group col-md-6 mb-0">
                         {{ employee_form.dateFired | as_crispy_field }}
@@ -69,34 +69,32 @@
 
                 {{ exp_formset.management_form }}
 
-                {% for form in exp_formset %}
-                    <div class="exp-formset">
-                        {{ form.from_date | as_crispy_field }}
-                        {% if exp_formset.from_date.errors %}
-                            {% for error in exp_formset.from_date.errors %}
-                                {{ error|escape }}
-                            {% endfor %}
-                        {% endif %}
-                        
-                        <br>
+                <div class="exp-formset">
+                    {{ exp_formset.from_date | as_crispy_field }}
+                    {% if exp_formset.from_date.errors %}
+                        {% for error in exp_formset.from_date.errors %}
+                            {{ error|escape }}
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <br>
 
-                        {{ form.to_date | as_crispy_field }}
-                        {% if exp_formset.to_date.errors %}
-                            {% for error in exp_formset.to_date.errors %}
-                                {{ error|escape }}
-                            {% endfor %}
-                        {% endif %}
+                    {{ exp_formset.to_date | as_crispy_field }}
+                    {% if exp_formset.to_date.errors %}
+                        {% for error in exp_formset.to_date.errors %}
+                            {{ error|escape }}
+                        {% endfor %}
+                    {% endif %}
 
-                        <br>
+                    <br>
 
-                        {{ form.text | as_crispy_field }}
-                        {% if exp_formset.text.errors %}
-                            {% for error in exp_formset.text.errors %}
-                                {{ error|escape }}
-                            {% endfor %}
-                        {% endif %}
-                    </div>
-                {% endfor %}
+                    {{ exp_formset.text | as_crispy_field }}
+                    {% if exp_formset.text.errors %}
+                        {% for error in exp_formset.text.errors %}
+                            {{ error|escape }}
+                        {% endfor %}
+                    {% endif %}
+                </div>
 
                 {% if exp_formset.non_form_errors %}
                     {% for error in exp_formset.non_form_errors %} 
