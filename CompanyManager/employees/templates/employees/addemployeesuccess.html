@@ -6,12 +6,12 @@
     </head>
     <body>
         <h1>Adding employee successful!</h1>
-        <p>Testing first name: {{ employee_form.firstName }}</p>
-        <p>Testing last name: {{ employee_form.lastName }}</p>
+        <p>Testing first name: {{ employee_form.firstName.value }}</p>
+        <p>Testing last name: {{ employee_form.lastName.value }}</p>
         {% for exp_form in exp_formset %}
-            <p>Testing formset from_date: {{ exp_form.from_date }}</p>
-            <p>Testing formset to_date: {{ exp_form.to_date }}</p>
-            <p>Testing formset text: {{ exp_form.text }}</p>
+            <p>Testing formset from_date: {{ exp_form.from_date.value }}</p>
+            <p>Testing formset to_date: {{ exp_form.to_date.value }}</p>
+            <p>Testing formset text: {{ exp_form.text.value }}</p>
         {% endfor %}
         <a href="#">Edit this employee</a>
         <a href="{% url 'employees:employees' %}">Go to employees list</a>
