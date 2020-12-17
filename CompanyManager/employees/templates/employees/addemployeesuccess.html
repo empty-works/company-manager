@@ -8,9 +8,11 @@
         <h1>Adding employee successful!</h1>
         <p>Testing first name: {{ employee_form.firstName }}</p>
         <p>Testing last name: {{ employee_form.lastName }}</p>
-        <p>Testing formset from_date: {{ exp_formset.from_date }}</p>
-        <p>Testing formset to_date: {{ exp_formset.to_date }}</p>
-        <p>Testing formset text: {{ exp_formset.text }}</p>
+        {% for exp_form in exp_formset %}
+            <p>Testing formset from_date: {{ exp_form.from_date }}</p>
+            <p>Testing formset to_date: {{ exp_form.to_date }}</p>
+            <p>Testing formset text: {{ exp_form.text }}</p>
+        {% endfor %}
         <a href="#">Edit this employee</a>
         <a href="{% url 'employees:employees' %}">Go to employees list</a>
     </body>
