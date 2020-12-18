@@ -33,10 +33,10 @@ def addEmployee(request):
             exp_formset = ExpFormSet(request.POST)
             #skill_form = SkillForm(request.POST)
 
-            if employee_form.is_valid and exp_formset:
+            if employee_form.is_valid:
                 #employee = employee_form.save(commit = False) 
                 #employee.recorded_by(request.user)
-                #employee = employee_form.save() 
+                employee = employee_form.save() 
 
                 #skill = skill_form.save(False)
                 #skill.employee = employee
@@ -44,7 +44,6 @@ def addEmployee(request):
 
                 messages.success(request, 'Experience has been updated.')
 
-            '''
             if exp_formset.is_valid():
                 new_exp = [] #Save the data for each form in the formset.
 
@@ -67,7 +66,6 @@ def addEmployee(request):
                 except IntegrityError: #transaction failed
                     messages.error(request, 'There was error updating experience.')
                     return redirect('employees:employees')
-            '''
 
             # Redirect is the action in the form in the addemployee template.
             context = {'employee_form': employee_form, 'exp_formset': exp_formset} 
@@ -78,7 +76,7 @@ def addEmployee(request):
 
 @login_required
 def showSuccessAdd(request):
-    #emp = get_object_or_404(Employee, pk = employees_pk)
+    
     return render(request, 'employees/addemployeesuccess.html')
 
 @login_required
