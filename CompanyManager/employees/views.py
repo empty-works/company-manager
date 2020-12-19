@@ -33,10 +33,10 @@ def addEmployee(request):
             exp_formset = ExpFormSet(request.POST)
             #skill_form = SkillForm(request.POST)
 
-            if employee_form.is_valid:
+            if employee_form.is_valid and exp_formset.is_valid():
                 #employee = employee_form.save(commit = False) 
                 #employee.recorded_by(request.user)
-                employee = employee_form.save() 
+                emp = employee_form.save() 
 
                 #skill = skill_form.save(False)
                 #skill.employee = employee
@@ -44,7 +44,6 @@ def addEmployee(request):
 
                 messages.success(request, 'Experience has been updated.')
 
-            if exp_formset.is_valid():
                 new_exp = [] #Save the data for each form in the formset.
 
                 for exp in exp_formset:
@@ -53,7 +52,7 @@ def addEmployee(request):
                     text = exp.cleaned_data.get('text')
 
                     if from_date and to_date and text:
-                        new_exp.append(Experience(from_date=from_date, to_date=to_date, text=text))
+                        new_exp.append(Experience(from_date=from_date, to_date=to_date, text=text, employee = emp))
                 try:
                     with transaction.atomic():
                         #Replace old entries with the new ones
@@ -76,19 +75,21 @@ def addEmployee(request):
 
 @login_required
 def showSuccessAdd(request):
-    
     return render(request, 'employees/addemployeesuccess.html')
 
 @login_required
 def viewEmployee(request, employees_pk):
     emp = get_object_or_404(Employee, pk = employees_pk)
+    exp = get_object_or_404(Experience, pk = employees_pk)
+    exp_list = emp.experience_set.all()
     if request.method == 'GET':
-        form = EmployeeForm(instance = emp) 
-        return render(request, 'employees/employeedetail.html', {'emp':emp, 'form':form})
+        emp_form = EmployeeForm(instance = emp) 
+        exp_form = ExperienceForm(instance = exp)
+        return render(request, 'employees/employeedetail.html', { 'emp':emp, 'exp_list':exp_list })
     else:
         try: 
-            form = EmployeeForm(request.POST, instance = emp)
-            form.save()
+            emp_form = EmployeeForm(request.POST, instance = emp)
+            emp_form.save()
             return redirect('employees:employees')
         except ValueError:
             return render(request, 'employees/addemployee.html', {'form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})

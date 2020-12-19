@@ -74,6 +74,11 @@
                                     </div>
                                     <div class="carousel-item">
                                         <h1>Experience</h1>
+                                        {% for exp in exp_list %}
+                                            {{ exp.from_date }}
+                                            {{ exp.to_date }}
+                                            {{ exp.text }}
+                                        {% endfor %}
                                     </div>
                                     <div class="carousel-item">
                                         <h1>Assignments</h1>
