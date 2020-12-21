@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
-                            <div class="card-body">
+                            <div id="emp-essentials" class="card-body">
                                 <h3 class="card-title">Essentials</h3>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -75,9 +75,11 @@
                                     <div class="carousel-item">
                                         <h1>Experience</h1>
                                         {% for exp in exp_list %}
-                                            {{ exp.from_date }}
-                                            {{ exp.to_date }}
-                                            {{ exp.text }}
+                                        <ul>
+                                            <li>{{ exp.from_date }}</li>
+                                            <li>{{ exp.to_date }}</li>
+                                            <li>{{ exp.text }}</li>
+                                        </ul>
                                         {% endfor %}
                                     </div>
                                     <div class="carousel-item">
@@ -92,6 +94,7 @@
                 </div>
             </div>
         </div>
+        <script src="{% static 'js/employee_detail.js' %}"></script>
 	</body>
 	{% endblock %}
 </html>
