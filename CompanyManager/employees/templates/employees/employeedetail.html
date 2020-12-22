@@ -27,10 +27,10 @@
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-12">
-                        <button class="col align-self-start" data-toggle="collapse" data-target="#emp-essentials">
+                        <button onclick="toggleEssentials()" id="essentials-toggle" class="col align-self-start">
                             Hide Essentials</button>
                         <div class="card">
-                            <div id="emp-essentials" class="card-body collapse show">
+                            <div id="emp-essentials" class="card-body">
                                 <div class="row">
                                     <div class="col-md-6">
                                         <p><h5>First Name:</h5> {{ emp.firstName }}</p>
