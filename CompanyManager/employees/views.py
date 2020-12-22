@@ -30,10 +30,10 @@ def addEmployee(request):
         # Essentially takes the form from GET and melds the fields into a POST thing. Awesome.
         try:
             employee_form = EmployeeForm(request.POST)
-            exp_formset = ExpFormSet(request.POST)
+            exp_formset_post = ExpFormSet(request.POST)
             #skill_form = SkillForm(request.POST)
 
-            if employee_form.is_valid and exp_formset.is_valid():
+            if employee_form.is_valid and exp_formset_post.is_valid():
                 #employee = employee_form.save(commit = False) 
                 #employee.recorded_by(request.user)
                 emp = employee_form.save() 
@@ -42,36 +42,37 @@ def addEmployee(request):
                 #skill.employee = employee
                 #skill_form.save()
 
-                messages.success(request, 'Experience has been updated.')
-
-                new_exp = [] #Save the data for each form in the formset.
-
-                for exp in exp_formset:
-                    from_date = exp.cleaned_data.get('from_date')
-                    to_date = exp.cleaned_data.get('to_date')
-                    text = exp.cleaned_data.get('text')
-
-                    if from_date and to_date and text:
-                        new_exp.append(Experience(from_date=from_date, to_date=to_date, text=text, employee = emp))
-                try:
-                    with transaction.atomic():
-                        #Replace old entries with the new ones
-                        #Experience.objects.filter(user=user).delete()
-                        Experience.objects.bulk_create(new_exp)
-
-                        #Notify users that it worked
-                        #messages.success(request, 'Experience has been updated.')
-                
-                except IntegrityError: #transaction failed
-                    messages.error(request, 'There was error updating experience.')
-                    return redirect('employees:employees')
+                saveExperience(exp_formset_post, emp, request) 
 
             # Redirect is the action in the form in the addemployee template.
-            context = {'employee_form': employee_form, 'exp_formset': exp_formset} 
+            context = {'employee_form': employee_form, 'exp_formset': exp_formset_post} 
             return render(request, 'employees/addemployeesuccess.html', context)
         except ValueError:
-            context = {'exp_formset': exp_formset}
-            return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'}, context)
+            return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
+
+#Helper function for addEmployee
+def saveExperience(exp_formset_post, emp, request):
+    new_exp = [] #Save the data for each form in the formset.
+
+    for exp in exp_formset_post:
+        from_date = exp.cleaned_data.get('from_date')
+        to_date = exp.cleaned_data.get('to_date')
+        text = exp.cleaned_data.get('text')
+
+        if from_date and to_date and text:
+            new_exp.append(Experience(from_date=from_date, to_date=to_date, text=text, employee = emp))
+    try:
+        with transaction.atomic():
+            #Replace old entries with the new ones
+            #Experience.objects.filter(user=user).delete()
+            Experience.objects.bulk_create(new_exp)
+
+            #Notify users that it worked
+            messages.success(request, 'Experience has been updated.')
+    
+    except IntegrityError: #transaction failed
+        messages.error(request, 'There was error updating experience.')
+        return redirect('employees:employees')
 
 @login_required
 def showSuccessAdd(request):
