@@ -31,9 +31,9 @@ def addEmployee(request):
         try:
             employee_form = EmployeeForm(request.POST)
             exp_formset_post = ExpFormSet(request.POST)
-            #skill_form = SkillForm(request.POST)
+            skill_form = SkillForm(request.POST)
 
-            if employee_form.is_valid and exp_formset_post.is_valid():
+            if employee_form.is_valid() and exp_formset_post.is_valid() and skill_form.is_valid():
                 #employee = employee_form.save(commit = False) 
                 #employee.recorded_by(request.user)
                 emp = employee_form.save() 
