@@ -20,10 +20,11 @@ def employees(request):
 @login_required
 def addEmployee(request):
     ExpFormSet = formset_factory(ExperienceForm, extra=1)
+    SkillFormSet = formset_factory(SkillForm, extra=1)
     if request.method == 'GET':
         employee_form = EmployeeForm()
         exp_formset = ExpFormSet()
-        skill_form = SkillForm()
+        skill_formset = SkillFormSet()
         context = {'employee_form':employee_form, 'exp_formset':exp_formset, 'skill_form':skill_form}
         return render(request, 'employees/addemployee.html', context)
     elif request.method == 'POST':
