@@ -75,6 +75,10 @@ def saveExperience(exp_formset_post, emp, request):
         messages.error(request, 'There was error updating experience.')
         return redirect('employees:employees')
 
+# Helper function for addEmployee
+def saveSkill(skill_formset_post, emp, request):
+    pass
+
 @login_required
 def showSuccessAdd(request):
     return render(request, 'employees/addemployeesuccess.html')
