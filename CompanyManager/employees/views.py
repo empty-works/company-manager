@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.forms import modelformset_factory
 from .models import Employee
 from .models import Experience
+from .models import Skill
 from .forms import EmployeeForm
 from .forms import SkillForm
 from .forms import ExperienceForm
@@ -77,7 +78,16 @@ def saveExperience(exp_formset_post, emp, request):
 
 # Helper function for addEmployee
 def saveSkill(skill_formset_post, emp, request):
-    pass
+    new_skill = [] # Save the data for each form in the formset
+
+    for skill in skill_formset_post:
+        from_date = skill.cleaned_data.get('from_date')
+        to_date = skill.cleaned_data.get('to_date')
+        text = skill.cleaned_data.get('text')
+
+        if from_date and to_date and text:
+            new_skill.append(Skill(from_date=from_date, to_date=to_date, text=text, employee = emp))
+
 
 @login_required
 def showSuccessAdd(request):
