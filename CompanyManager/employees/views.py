@@ -73,7 +73,7 @@ def saveExperience(exp_formset_post, emp, request):
             messages.success(request, 'Experience has been updated.')
     
     except IntegrityError: #transaction failed
-        messages.error(request, 'There was error updating experience.')
+        messages.error(request, 'There was an error updating experience.')
         return redirect('employees:employees')
 
 # Helper function for addEmployee
@@ -88,6 +88,18 @@ def saveSkill(skill_formset_post, emp, request):
         if from_date and to_date and text:
             new_skill.append(Skill(from_date=from_date, to_date=to_date, text=text, employee = emp))
 
+    try:
+        with transaction.atomic():
+            #Replace old entries with the new ones
+            #Experience.objects.filter(user=user).delete()
+            Skill.objects.bulk_create(new_skill)
+
+            #Notify users that it worked
+            messages.success(request, 'Skill has been updated.')
+    
+    except IntegrityError: #transaction failed
+        messages.error(request, 'There was an error updating experience.')
+        return redirect('employees:employees')
 
 @login_required
 def showSuccessAdd(request):
