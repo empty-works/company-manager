@@ -35,7 +35,7 @@ def addEmployee(request):
             exp_formset_post = ExpFormSet(request.POST)
             skill_formset_post = SkillFormSet(request.POST)
 
-            if employee_form.is_valid() and exp_formset_post.is_valid() and skill_form_post.is_valid():
+            if employee_form.is_valid() and exp_formset_post.is_valid() and skill_formset_post.is_valid():
                 #employee = employee_form.save(commit = False) 
                 #employee.recorded_by(request.user)
                 emp = employee_form.save() 
@@ -45,6 +45,7 @@ def addEmployee(request):
                 #skill_form.save()
 
                 saveExperience(exp_formset_post, emp, request) 
+                saveSkill(skill_formset_post, emp, request)
 
             # Redirect is the action in the form in the addemployee template.
             context = {'employee_form': employee_form, 'exp_formset': exp_formset_post} 
