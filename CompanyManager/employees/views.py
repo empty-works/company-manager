@@ -38,7 +38,7 @@ def addEmployee(request):
             if employee_form.is_valid() and exp_formset_post.is_valid() and skill_formset_post.is_valid():
                 #employee = employee_form.save(commit = False) 
                 #employee.recorded_by(request.user)
-                emp = employee_form.save() 
+                emp = employee_form.save()
 
                 #skill = skill_form.save(False)
                 #skill.employee = employee
@@ -65,18 +65,8 @@ def saveExperience(exp_formset_post, emp, request):
 
         if from_date and to_date and text:
             new_exp.append(Experience(from_date=from_date, to_date=to_date, text=text, employee = emp))
-    try:
-        with transaction.atomic():
-            #Replace old entries with the new ones
-            #Experience.objects.filter(user=user).delete()
-            Experience.objects.bulk_create(new_exp)
 
-            #Notify users that it worked
-            messages.success(request, 'Experience has been updated.')
-    
-    except IntegrityError: #transaction failed
-        messages.error(request, 'There was an error updating experience.')
-        return redirect('employees:employees')
+    saveFormset(new_exp, request)
 
 # Helper function for addEmployee
 def saveSkill(skill_formset_post, emp, request):
@@ -89,18 +79,7 @@ def saveSkill(skill_formset_post, emp, request):
         if name and rank:
             new_skill.append(Skill(name=name, rank=rank, employee=emp))
 
-    try:
-        with transaction.atomic():
-            #Replace old entries with the new ones
-            #Experience.objects.filter(user=user).delete()
-            Skill.objects.bulk_create(new_skill)
-
-            #Notify users that it worked
-            messages.success(request, 'Skill has been updated.')
-    
-    except IntegrityError: #transaction failed
-        messages.error(request, 'There was an error updating experience.')
-        return redirect('employees:employees')
+    saveFormset(new_skill, request)
 
 # Helper function for the saveExperience and saveSkill functions.
 def saveFormset(form_list, request):
