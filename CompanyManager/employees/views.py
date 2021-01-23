@@ -149,30 +149,3 @@ def deleteEmployee(request, employees_pk):
 def viewEmergencyContact(request, employees_pk):
     emp = get_object_or_404(Employee, pk = employees_pk)
     return render(request, 'employees/emp_emergency_contact.html', {'emp':emp})
-
-@login_required
-def viewAllExperience(request, employees_pk):
-    pass
-
-@login_required
-def viewExperience(request, employees_pk):
-    pass
-
-@login_required
-def editExperience(request, employees_pk):
-    emp = get_object_or_404(Employee, pk = employees_pk)
-    return render(request, 'employees/editexperience.html', {'emp':emp})
-    
-@login_required
-def viewAllSkills(request, employees_pk):
-    pass
-
-@login_required
-def viewSkill(request, employees_pk):
-    pass
-
-@login_required
-def editSkill(request, employees_pk):
-    emp = get_object_or_404(Employee, pk = employees_pk)
-    return render(request, 'employees/edit_skill.html', {'emp':emp})
-    
