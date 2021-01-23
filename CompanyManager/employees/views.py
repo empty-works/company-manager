@@ -53,6 +53,7 @@ def addEmployee(request):
         except ValueError:
             return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
 
+
 #Helper function for addEmployee
 def saveExperience(exp_formset_post, emp, request):
     new_exp = [] #Save the data for each form in the formset.
@@ -82,12 +83,11 @@ def saveSkill(skill_formset_post, emp, request):
     new_skill = [] # Save the data for each form in the formset
 
     for skill in skill_formset_post:
-        from_date = skill.cleaned_data.get('from_date')
-        to_date = skill.cleaned_data.get('to_date')
-        text = skill.cleaned_data.get('text')
+        name = skill.cleaned_data.get('name')
+        rank = skill.cleaned_data.get('rank')
 
-        if from_date and to_date and text:
-            new_skill.append(Skill(from_date=from_date, to_date=to_date, text=text, employee = emp))
+        if name and rank:
+            new_skill.append(Skill(name=name, rank=rank, employee=emp))
 
     try:
         with transaction.atomic():
@@ -97,6 +97,22 @@ def saveSkill(skill_formset_post, emp, request):
 
             #Notify users that it worked
             messages.success(request, 'Skill has been updated.')
+    
+    except IntegrityError: #transaction failed
+        messages.error(request, 'There was an error updating experience.')
+        return redirect('employees:employees')
+
+# Helper function for the saveExperience and saveSkill functions.
+def saveFormset(form_list, request):
+
+    try:
+        with transaction.atomic():
+            #Replace old entries with the new ones
+            #Experience.objects.filter(user=user).delete()
+            Experience.objects.bulk_create(form_list)
+
+            #Notify users that it worked
+            messages.success(request, 'Experience has been updated.')
     
     except IntegrityError: #transaction failed
         messages.error(request, 'There was an error updating experience.')
