@@ -102,19 +102,21 @@ def showSuccessAdd(request):
 
 @login_required
 def viewEmployee(request, employees_pk):
-    emp = get_object_or_404(Employee, pk = employees_pk)
+    emp = get_object_or_404(Employee, pk=employees_pk)
     exp_list = emp.experience_set.all()
-    skill_list = emp.skill_set.all() 
+    skill_list = emp.skill_set.all()
     if request.method == 'GET':
-        emp_form = EmployeeForm(instance = emp) 
-        return render(request, 'employees/employeedetail.html', { 'emp':emp, 'exp_list':exp_list })
-    else:
-        try: 
-            emp_form = EmployeeForm(request.POST, instance = emp)
-            emp_form.save()
-            return redirect('employees:employees')
-        except ValueError:
-            return render(request, 'employees/addemployee.html', {'form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
+        emp_form = EmployeeForm(instance=emp)
+        return render(request, 'employees/employeedetail.html',
+                      {'emp':emp, 'exp_list':exp_list, 'skill_list':skill_list})
+
+    try:
+        emp_form = EmployeeForm(request.POST, instance=emp)
+        emp_form.save()
+        return redirect('employees:employees')
+    except ValueError:
+        return render(request, 'employees/addemployee.html',
+                      {'form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
 
 @login_required
 #DON'T USE THIS VIEW. MAKE IT SO INDIVIDUAL ELEMENTS LIKE IMAGE OR PERSONAL SECTIONS ARE DIRECTLY LINKED
