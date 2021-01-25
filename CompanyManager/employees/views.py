@@ -53,7 +53,6 @@ def addEmployee(request):
         except ValueError:
             return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
 
-
 #Helper function for addEmployee
 def saveExperience(exp_formset_post, emp, request):
     new_exp = [] #Save the data for each form in the formset.
@@ -104,11 +103,10 @@ def showSuccessAdd(request):
 @login_required
 def viewEmployee(request, employees_pk):
     emp = get_object_or_404(Employee, pk = employees_pk)
-    exp = get_object_or_404(Experience, pk = employees_pk)
     exp_list = emp.experience_set.all()
+    skill_list = emp.skill_set.all() 
     if request.method == 'GET':
         emp_form = EmployeeForm(instance = emp) 
-        exp_form = ExperienceForm(instance = exp)
         return render(request, 'employees/employeedetail.html', { 'emp':emp, 'exp_list':exp_list })
     else:
         try: 
