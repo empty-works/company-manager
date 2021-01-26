@@ -65,6 +65,22 @@
                     </div>
                 </div>
                 <br>
+
+                <h3>Skills</h3><br> 
+
+                {{ skill_formset.management_form }}
+
+                <div class="skill-formset">
+                    {% for skill_form in skill_formset %}
+                        {{ skill_form.name | as_crispy_field }}
+                            {% if skill_formset.text.errors %}
+                                {% for error in skill_formset.text.errors %}
+                                    {{ error|escape }}
+                                {% endfor %}
+                            {% endif %}   
+                    {% endfor %}
+                </div>
+
                 <h3>Experience</h3><br>
 
                 {{ exp_formset.management_form }}

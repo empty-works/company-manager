@@ -26,7 +26,7 @@ def addEmployee(request):
         employee_form = EmployeeForm()
         exp_formset = ExpFormSet()
         skill_formset = SkillFormSet()
-        context = {'employee_form':employee_form, 'exp_formset':exp_formset, 'skill_form':skill_formset}
+        context = {'employee_form':employee_form, 'exp_formset':exp_formset, 'skill_formset':skill_formset}
         return render(request, 'employees/addemployee.html', context)
     elif request.method == 'POST':
         # Essentially takes the form from GET and melds the fields into a POST thing. Awesome.
