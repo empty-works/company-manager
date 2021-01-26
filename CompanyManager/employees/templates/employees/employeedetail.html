@@ -72,6 +72,12 @@
                                 <div class="carousel-inner">
                                     <div class="carousel-item active">
                                         <h1>Skills</h1>
+                                        {% for skill in skill_list %}
+                                        <ul>
+                                            <li>{{ skill.name }}</li>
+                                            <li>{{ skill.rank }}</li>
+                                        </ul>
+                                        {% endfor %}
                                     </div>
                                     <div class="carousel-item">
                                         <h1>Experience</h1>
