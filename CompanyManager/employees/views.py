@@ -65,7 +65,7 @@ def saveExperience(exp_formset_post, emp, request):
         if from_date and to_date and text:
             new_exp.append(Experience(from_date=from_date, to_date=to_date, text=text, employee = emp))
 
-    saveFormset(new_exp, request)
+    saveFormset(new_exp, request, Experience)
 
 # Helper function for addEmployee
 def saveSkill(skill_formset_post, emp, request):
@@ -78,20 +78,19 @@ def saveSkill(skill_formset_post, emp, request):
         if name and rank:
             new_skill.append(Skill(name=name, rank=rank, employee=emp))
 
-    saveFormset(new_skill, request)
+    saveFormset(new_skill, request, Skill)
 
 # Helper function for the saveExperience and saveSkill functions.
-def saveFormset(form_list, request):
+def saveFormset(form_list, request, model):
 
     try:
         with transaction.atomic():
             #Replace old entries with the new ones
             #Experience.objects.filter(user=user).delete()
-            Experience.objects.bulk_create(form_list)
+            model.objects.bulk_create(form_list)
 
             #Notify users that it worked
             messages.success(request, 'Experience has been updated.')
-    
     except IntegrityError: #transaction failed
         messages.error(request, 'There was an error updating experience.')
         return redirect('employees:employees')
