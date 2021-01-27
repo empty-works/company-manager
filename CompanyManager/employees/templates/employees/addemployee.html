@@ -73,11 +73,20 @@
                 <div class="skill-formset">
                     {% for skill_form in skill_formset %}
                         {{ skill_form.name | as_crispy_field }}
-                            {% if skill_formset.text.errors %}
-                                {% for error in skill_formset.text.errors %}
-                                    {{ error|escape }}
-                                {% endfor %}
-                            {% endif %}   
+                        {% if skill_formset.text.errors %}
+                            {% for error in skill_formset.text.errors %}
+                                {{ error|escape }}
+                            {% endfor %}
+                        {% endif %}   
+                            
+                        <br>
+
+                        {{ skill_form.rank | as_crispy_field }}
+                        {% if skill_formset.text.errors %}
+                            {% for error in skill_formset.text.errors %}
+                                {{ error|escape }}
+                            {% endfor %}
+                        {% endif %}   
                     {% endfor %}
                 </div>
 
