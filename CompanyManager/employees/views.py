@@ -3,11 +3,11 @@ from django.db import IntegrityError, transaction
 from django.shortcuts import render, get_object_or_404, redirect
 from django.forms import modelformset_factory
 from .models import Employee
-from .models import Experience
-from .models import Skill
 from .forms import EmployeeForm
-from .forms import SkillForm
+from .models import Experience
 from .forms import ExperienceForm
+from .models import Skill
+from .forms import SkillForm
 from django.forms.formsets import formset_factory
 from django.forms import modelformset_factory
 from django.contrib.auth.decorators import login_required
