@@ -4,6 +4,7 @@ from django.forms import modelformset_factory
 from .models import Employee
 from .models import Experience
 from .models import Skill
+from .models import Assignment
 
 class EmployeeForm(ModelForm):
     class Meta:
@@ -53,3 +54,9 @@ class ExperienceForm(ModelForm):
             'from_date':forms.DateInput(attrs={'type':'date'}),
             'to_date':forms.DateInput(attrs={'type':'date'}),
                 }
+
+class AssignmentForm(ModelForm):
+    class Meta:
+        model = Assignment
+        fields = ['title',
+                  'description',]
