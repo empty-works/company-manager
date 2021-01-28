@@ -72,3 +72,11 @@ class Skill(models.Model):
             default = 'novice',
             ) 
 
+class Assignment(models.Model):
+    employee = models.ForeignKey(
+            Employee,
+            on_delete = models.CASCADE,
+            null = True,
+            )
+    title = models.CharField(max_length = 300, blank = True)
+    description = models.TextField(default = "ASSIGNMENT DESCRIPTION", blank = True)

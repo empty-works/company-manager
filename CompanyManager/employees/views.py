@@ -40,10 +40,6 @@ def addEmployee(request):
                 #employee.recorded_by(request.user)
                 emp = employee_form.save()
 
-                #skill = skill_form.save(False)
-                #skill.employee = employee
-                #skill_form.save()
-
                 saveExperience(exp_formset_post, emp, request) 
                 saveSkill(skill_formset_post, emp, request)
 
