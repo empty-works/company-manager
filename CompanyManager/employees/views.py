@@ -83,10 +83,10 @@ def saveAssignment(assignment_formset_post, emp, request):
     new_assignment = [] # Save the data for each form in the formset
 
     for assignment in assignment_formset_post:
-        name = assignment.cleaned_data.get('name')
-        rank = assignment.cleaned_data.get('rank')
+        title = assignment.cleaned_data.get('title')
+        description = assignment.cleaned_data.get('description')
 
-        if name and rank:
+        if title and description:
             new_assignment.append(Assignment(title=title, description=description))
 
     saveFormset(new_assignment, request, Assignment)
