@@ -8,6 +8,8 @@ from .models import Experience
 from .forms import ExperienceForm
 from .models import Skill
 from .forms import SkillForm
+from .models import Assignment
+from .forms import AssignmentForm
 from django.forms.formsets import formset_factory
 from django.forms import modelformset_factory
 from django.contrib.auth.decorators import login_required
@@ -75,6 +77,19 @@ def saveSkill(skill_formset_post, emp, request):
             new_skill.append(Skill(name=name, rank=rank, employee=emp))
 
     saveFormset(new_skill, request, Skill)
+
+# Helper function for addEmployee
+def saveAssignment(assignment_formset_post, emp, request):
+    new_assignment = [] # Save the data for each form in the formset
+
+    for assignment in assignment_formset_post:
+        name = assignment.cleaned_data.get('name')
+        rank = assignment.cleaned_data.get('rank')
+
+        if name and rank:
+            new_assignment.append(Assignment(title=title, description=description))
+
+    saveFormset(new_assignment, request, Assignment)
 
 # Helper function for the saveExperience and saveSkill functions.
 def saveFormset(form_list, request, model):
