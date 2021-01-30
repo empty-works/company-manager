@@ -28,7 +28,9 @@ def addEmployee(request):
         employee_form = EmployeeForm()
         exp_formset = ExpFormSet()
         skill_formset = SkillFormSet()
-        context = {'employee_form':employee_form, 'exp_formset':exp_formset, 'skill_formset':skill_formset}
+        context = {'employee_form':employee_form,
+                   'exp_formset':exp_formset,
+                   'skill_formset':skill_formset}
         return render(request, 'employees/addemployee.html', context)
 
     if request.method == 'POST':
@@ -39,18 +41,20 @@ def addEmployee(request):
             skill_formset_post = SkillFormSet(request.POST)
 
             if employee_form.is_valid() and exp_formset_post.is_valid() and skill_formset_post.is_valid():
-                #employee = employee_form.save(commit = False) 
+                #employee = employee_form.save(commit = False)
                 #employee.recorded_by(request.user)
                 emp = employee_form.save()
 
-                saveExperience(exp_formset_post, emp, request) 
+                saveExperience(exp_formset_post, emp, request)
                 saveSkill(skill_formset_post, emp, request)
 
             # Redirect is the action in the form in the addemployee template.
-            context = {'employee_form': employee_form, 'exp_formset': exp_formset_post} 
+            context = {'employee_form': employee_form, 'exp_formset': exp_formset_post}
             return render(request, 'employees/addemployeesuccess.html', context)
         except ValueError:
-            return render(request, 'employees/addemployee.html', {'employee_form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
+            return render(request, 'employees/addemployee.html',
+                          {'employee_form': EmployeeForm(),
+                           'error':'Bad data passed in. Try again.'})
 
 #Helper function for addEmployee
 def saveExperience(exp_formset_post, emp, request):
@@ -62,7 +66,7 @@ def saveExperience(exp_formset_post, emp, request):
         text = exp.cleaned_data.get('text')
 
         if from_date and to_date and text:
-            new_exp.append(Experience(from_date=from_date, to_date=to_date, text=text, employee = emp))
+            new_exp.append(Experience(from_date=from_date, to_date=to_date, text=text, employee=emp))
 
     saveFormset(new_exp, request, Experience)
 
@@ -132,26 +136,29 @@ def viewEmployee(request, employees_pk):
 @login_required
 #DON'T USE THIS VIEW. MAKE IT SO INDIVIDUAL ELEMENTS LIKE IMAGE OR PERSONAL SECTIONS ARE DIRECTLY LINKED
 def editEmployee(request, employees_pk):
-    emp = get_object_or_404(Employee, pk = employees_pk)
+    emp = get_object_or_404(Employee, pk=employees_pk)
     if request.method == 'GET':
-        form = EmployeeForm(instance = emp) 
-        return render(request, 'employees/edit_sections/editemployeebase.html', {'emp':emp, 'form':form})
-    else:
-        try: 
-            form = EmployeeForm(request.POST, instance = emp)
-            form.save()
-            return redirect('employees:employees')
-        except ValueError:
-            return render(request, 'employees/addemployee.html', {'form': EmployeeForm(), 'error':'Bad data passed in. Try again.'})
+        form = EmployeeForm(instance=emp)
+        return render(request,
+                      'employees/edit_sections/editemployeebase.html',
+                      {'emp':emp, 'form':form})
+    try:
+        form = EmployeeForm(request.POST, instance=emp)
+        form.save()
+        return redirect('employees:employees')
+    except ValueError:
+        return render(request, 'employees/addemployee.html',
+                      {'form': EmployeeForm(),
+                       'error':'Bad data passed in. Try again.'})
 
 @login_required
 def deleteEmployee(request, employees_pk):
-    emp = get_object_or_404(Employee, pk = employees_pk)
+    emp = get_object_or_404(Employee, pk=employees_pk)
     if request.method == 'POST':
         emp.delete()
         return redirect('employees:employees')
 
 @login_required
 def viewEmergencyContact(request, employees_pk):
-    emp = get_object_or_404(Employee, pk = employees_pk)
+    emp = get_object_or_404(Employee, pk=employees_pk)
     return render(request, 'employees/emp_emergency_contact.html', {'emp':emp})
