@@ -92,7 +92,7 @@ def saveAssignment(assignment_formset_post, emp, request):
         description = assignment.cleaned_data.get('description')
 
         if title and description:
-            new_assignment.append(Assignment(title=title, description=description))
+            new_assignment.append(Assignment(title=title, description=description, employee=emp))
 
     saveFormset(new_assignment, request, Assignment)
 
