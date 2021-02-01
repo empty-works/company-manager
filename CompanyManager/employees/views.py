@@ -66,7 +66,9 @@ def saveExperience(exp_formset_post, emp, request):
         text = exp.cleaned_data.get('text')
 
         if from_date and to_date and text:
-            new_exp.append(Experience(from_date=from_date, to_date=to_date, text=text, employee=emp))
+            new_exp.append(Experience(from_date=from_date,
+                                      to_date=to_date, text=text,
+                                      employee=emp))
 
     saveFormset(new_exp, request, Experience)
 
