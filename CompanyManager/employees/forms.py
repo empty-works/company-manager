@@ -8,6 +8,7 @@ from .models import Assignment
 
 class EmployeeForm(ModelForm):
     class Meta:
+        #TODO add way to select an image! 
         model = Employee
         fields = ['firstName',
                   'lastName',
